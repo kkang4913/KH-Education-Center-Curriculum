@@ -20,6 +20,5 @@ public static void main(String[] args) {
 	System.out.println(str);
 	String str2 = 123+45 + "기차" + "칙칙폭폭";
 	System.out.println(str2);
-	
 }
 }
