@@ -9,13 +9,13 @@ public class Sample02 {
 		//산술 연산자 +, -, *, /, %(나머지, 짝수 홀수 구분 활용)
 		Scanner scr = new  Scanner(System.in);
 		
-		int num1, num2;
-		System.out.print("num1 의 값을 입력 하세요 : ");
-		num1 = scr.nextInt();
-		System.out.print("num2 의 값을 입력 하세요 : ");
-		num2 =scr.nextInt();
+	int num1, num2;
+//		System.out.print("num1 의 값을 입력 하세요 : ");
+//		num1 = scr.nextInt();
+//		System.out.print("num2 의 값을 입력 하세요 : ");
+//		num2 =scr.nextInt();
 		//초기화 한 부분을 스캐너 사용해서 사용자 입력 받는 것으로 입력
-			
+		num1= 10; num2= 3;	
 		System.out.printf("%d + %d = %d\n", num1, num2, num1+num2);
 		System.out.printf("%d - %d = %d\n", num1, num2, num1-num2);
 		System.out.printf("%d * %d = %d\n", num1, num2, num1*num2);
@@ -33,6 +33,25 @@ public class Sample02 {
 		System.out.printf("%d < %d -> %b\n", num1, num2, num1 < num2);
 		System.out.printf("%d >= %d -> %b\n", num1, num2, num1>=num2);
 		System.out.printf("%d <= %d -> %b\n", num1, num2, num1 <= num2);
+		
+		
+		//논리 연산자 
+		//&& : and 논리 연산 기호 : 두 피연산자의 논리값이 전부 참인 경우에만 참으로 연산 
+		//|| : or 논리 연산 기호  : 두 피연산자의 논리값이 전부 거짓인 경우에만 거짓으로 연산하는 연산자
+		// Dead code : 죽은 코드 / 실행할 필요가 없다
+		System.out.printf("%b && %b -> %b\n", true, true, true && true);
+		System.out.printf("%b && %b -> %b\n", true, false, true && false);
+		System.out.printf("%b && %b -> %b\n", false, true, false && true);
+		System.out.printf("%b && %b -> %b\n", false, false, false && false);
+		
+		System.out.printf("%b || %b -> %b\n", true, true, true || true);
+		System.out.printf("%b || %b -> %b\n", true, false, true || false);
+		System.out.printf("%b || %b -> %b\n", false, true, false || true);
+		System.out.printf("%b || %b -> %b\n", false, false, false || false);
+		
+		
+		
+		
 		
 	}
 }
