@@ -24,40 +24,40 @@ public static void main(String[] args) {
 	
 	int kor, mat, eng, sum;
 	double avg;
-	Scanner scr = new  Scanner(System.in);
+
+	Scanner scr = new Scanner(System.in);
 	System.out.print("국어 점수를 입력하세요 : ");
 	kor = scr.nextInt();
+
 	System.out.print("영어 점수를 입력하세요 : ");
 	mat = scr.nextInt();
+
 	System.out.print("수학 점수를 입력하세요 : ");
 	eng = scr.nextInt();
-	
-	sum = (kor + mat +eng);		//총점
-	avg = (kor + mat +eng) /3; 	//평균
-	
-	if(kor <40 || eng <40 || mat < 40) {
+
+	sum = (kor + mat + eng); // 총점
+	avg = (kor + mat + eng) / 3; // 평균
+
+	if (kor < 40 || eng < 40 || mat < 40) {
 		System.out.println("과락된 과목이 있어 불합격 되었습니다.");
-	}else {
-		if (avg >=60) {
+	} else {
+		if (avg >= 60) {
 //			System.out.println("축하 합니다. 합격입니다.");
 //			System.out.printf("총점 : %d\n", sum );
 //			System.out.printf("국어 : %d\n", kor );
 //			System.out.printf("영어 : %d\n", eng );
 //			System.out.printf("수학 : %d\n", mat );
 //			System.out.printf("평균 : %.1f\n", avg );
-			
+
 			System.out.println("축하 합니다. 합격입니다.");
-			System.out.println("총점 : " + sum + "점" );
-			System.out.println("국어 : " + kor + "점" );
-			System.out.println("영어 : " + mat + "점" );
-			System.out.println("수학 : " + eng + "점" );
-			System.out.println("평균 : " + avg + "점" );
-		}else if(avg <60) {
+			System.out.println("총점 : " + sum + "점");
+			System.out.println("국어 : " + kor + "점");
+			System.out.println("영어 : " + mat + "점");
+			System.out.println("수학 : " + eng + "점");
+			System.out.println("평균 : " + avg + "점");
+		} else {
 			System.out.println("평균 점수가 미달하였습니다.");
-	}
-		
+		}
 	}
 }
-
 }
-
