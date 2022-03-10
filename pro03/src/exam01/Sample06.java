@@ -38,17 +38,17 @@ public static void main(String[] args) {
 		
 		switch (h / 12) {
 		case 0:
+//			h = h == 0 ? h =12 : h;
 			if (h == 0) {
 				h = 12;
 			}
 			break;
 		case 1:
 			ampm = "오후";
+//			h = h!=12 ? h-12 : h;
 			if (h != 12) {
 				h -= 12;
 			}
-			break;
-		default:
 			break;
 		}
 		System.out.printf("변환된 시간 : %s %d시 %d분", ampm, h, m);
