@@ -19,7 +19,7 @@ public class Sample01 {
 
 		System.out.println(i2);
 		System.out.println(b2);
-		// 자동 형변환 : 큰범위에서 작은 범위로 할당
+		// 자동 형변환 : 작은범위에서 큰 범위로 할당
 
 		double d1 = 10.4;
 		int i3 = 5;
@@ -46,7 +46,7 @@ public class Sample01 {
 		String s2 = "100";
 		//i7 = (int)s2; 문자열을 기본 자료형으로 변환 안됨
 		
-		s2 = i7 + ""; //캐스팅은 아니지만 기본 타입을 문자열로 변환할 수 있다.
+		s2 = i7 + "메롱"; //캐스팅은 아니지만 기본 타입을 문자열로 변환할 수 있다.
 		System.out.println(s2);
 	}
 
