@@ -39,5 +39,6 @@ public class Sample07 {
 			}
 			System.out.print("\n");
 		}
+		
 	}
 }

@@ -36,6 +36,7 @@ public static void main(String[] args) {
 	 * continue 문
 	 * 		-반복문 안에서 다음 실행할 코드의 진행을 막고 다시 반복문의 처음으로 돌려보내주는 구문
 	 */
+	
 	i = 0;
 	while (i < 10) {
 		i += 1;
