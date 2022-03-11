@@ -37,9 +37,5 @@ public class Sample06 {
 				System.out.println();
 			}
 		}
-		
-		
-		
 	}
-
 }
