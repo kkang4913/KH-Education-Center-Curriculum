@@ -37,9 +37,9 @@ public class Sample06 {
 				System.out.println();
 			}
 		}
-		/*
-		 * 위 문제에서 반복 출력할 때 한 줄에 7개의 정수 값이 출력되도록 코드를 작성.
-		 */
+		
+		
+		
 	}
 
 }
