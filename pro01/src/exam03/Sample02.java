@@ -16,8 +16,10 @@ public static void main(String[] args) {
 	i = 2;
 //	i = 3; // 값을 수정 할 수 없기 때문에 오류가 발생한다.
 	System.out.println(i);
-	String str = "기차" +123 + 45 + "출발";
+	String str = new String("기차");
 	System.out.println(str);
+	String str1 = "기차" +123 + 45 + "출발";
+	System.out.println(str1);
 	String str2 = 123+45 + "기차" + "칙칙폭폭";
 	System.out.println(str2);
 }
