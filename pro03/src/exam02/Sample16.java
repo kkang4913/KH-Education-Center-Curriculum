@@ -21,8 +21,8 @@ public static void main(String[] args) {
 	 * 몇 번의 승부에서 몇 번 이기고 몇 번 비기고 몇번 졌는지 출력하세요.
 	 */
 	String name = "";
-	String game = "";
-	String comgame = "";
+	String play = "";
+	String complayer = "";
 	String result = "";
 	String ston = "바위";
 	int j = 0;
@@ -40,31 +40,31 @@ public static void main(String[] args) {
 	while (true) {
 		rd = random.nextInt(3);
 		System.out.print("가위 바위 보 : ");
-		game = sc.nextLine();
+		play = sc.nextLine();
 		switch (rd) {
 		case 0:
-			comgame = "가위";
+			complayer = "가위";
 			break;
 		case 1:
-			comgame = "바위";
+			complayer = "바위";
 			break;
 		case 2:
-			comgame = "보";
+			complayer = "보";
 			break;
 		}
-		if (game.equals("exit")) {
+		if (play.equals("exit")) {
 			result = "가위 바위 보 게임을 종료합니다.\n";
 			System.out.println(result + "" + j + "전" + s + "승" + m + "무" + p + "패");
 			break;
-		}if (game.length() > 3) {
+		}if (play.length() > 3) {
 			System.out.println("잘못 입력하셨습니다.");
 			continue;
 		}
-		if (game.equals(comgame)) {
+		if (play.equals(complayer)) {
 			result = "비겼습니다.";
 			m++;
 		} else if (rd == 0) {
-			if (game.length() == 2) {
+			if (play.length() == 2) {
 				result = "이겼습니다..";
 				s++;
 			} else {
@@ -72,7 +72,7 @@ public static void main(String[] args) {
 				p++;
 			}
 		} else if (rd == 1) {
-			if (game.length() == 2) {
+			if (play.length() == 2) {
 				result = "졌습니다.";
 				p++;
 			} else {
@@ -80,7 +80,7 @@ public static void main(String[] args) {
 				s++;
 			}
 		} else if (rd == 2) {
-			if (game.equals(ston)) {
+			if (play.equals(ston)) {
 				result = "졌습니다.";
 				p++;
 			} else {
@@ -88,8 +88,8 @@ public static void main(String[] args) {
 				s++;
 			}
 		}
-		System.out.println(name + " : " + game);
-		System.out.println("컴퓨터 : " + comgame);
+		System.out.println(name + " : " + play);
+		System.out.println("컴퓨터 : " + complayer);
 		System.out.println(result);
 		result = "";
 		j++;

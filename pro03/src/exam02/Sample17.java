@@ -38,6 +38,7 @@ public class Sample17 {
 				System.out.println("컴퓨터 : " + sCom);
 				System.out.println(name + " : " + player);
 				count++;
+				// result = 0; //비긴경우에는 굳이 아래의 if문에 들어갈 필요가 없다?  -> 이겼다, 졌다 정도만 조건으로
 				if (player.equals("가위")) {
 					if (computer == 0) {
 						result = 0;
