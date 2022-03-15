@@ -26,7 +26,7 @@ public class Sample01 {
 		int i4;
 		// i4 = i3 + d1; : 형변환을 해줄수 없다 오류 발생
 		i4 = (int) (i3 + d1);
-		// 자동 형변환 (i3 -> d1으로 자동 형변환 double>int , 강제 형변환이 동시에 이뤄짐
+		// 자동 형변환 (i3 -> d1으로 자동 형변환 double > int , 강제 형변환이 동시에 이뤄짐
 		System.out.println(i4);
 
 		double d2 = 10.6;
