@@ -16,12 +16,13 @@ public static void main(String[] args) {
 	System.out.print("또 다른 한줄의 문자열 입력 : ");
 	String sInput2 =scr.next();
 	
+	System.out.println("사용자 입력 값 : " + sInput);
+	System.out.printf("사용자 입력 값 : %s\n", sInput);
+	System.out.println("==============================");
+	
 	System.out.println("사용자 입력 값 : " + sInput2);
 	System.out.printf("사용자 입력 값 : %s\n", sInput2);
     
-	System.out.println("==============================");
 
-	System.out.println("사용자 입력 값 : " + sInput);
-	System.out.printf("사용자 입력 값 : %s\n", sInput);
 }
 }
