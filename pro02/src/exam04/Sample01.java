@@ -27,7 +27,7 @@ public class Sample01 {
 		
 		int i4 = 1;
 		int i5 =i4++;   //후위 연산
-		System.out.printf("후위 결과 -> i4 = %d, i3 = %d\n", i4, i5);
+		System.out.printf("후위 결과 -> i4 = %d, i5 = %d\n", i4, i5);
 	}
 
 }
