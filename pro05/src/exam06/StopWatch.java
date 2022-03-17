@@ -8,7 +8,7 @@ public class StopWatch {
 		public void setHour(int h) {  //setter
 			hour =h;
 		}
-		public void getHour(int h) {  //setter
+		public void getHour(int h) {  //getter
 			hour =h;
 		}
 		
