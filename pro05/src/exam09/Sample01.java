@@ -28,6 +28,29 @@ public static void main(String[] args) {
 	System.out.println("반지름" + c1.getDiamiter());
 	
 	
-	System.out.println("PI : " + c1.getPi());
+	System.out.println("======직사각형의 넓이 둘레======");
+	
+	Rectangle r1 = new Rectangle(3,5);
+	
+	r1.setWidth(10);
+	r1.setLenth(8);
+	
+	System.out.println("직사각형 넓이 : " + r1.getArea());
+	System.out.println("직사각형 둘레 : " + r1.getRound());
+	System.out.println("가로 길이 : " + r1.getWidth());
+	System.out.println("세로 길이 : " + r1.getLenth());
+	
+	System.out.println("=======삼각형의 넓이 둘레=======");
+	
+	Triangle t1 = new Triangle(5);
+	
+	System.out.println("정삼각형 변 길이 : " + t1.getSide());
+	System.out.println("정삼각형의 둘레 : " + t1.getRound());
+	
+	t1.setSide(10);
+	System.out.println("정삼각형 변 길이 : " + t1.getSide());
+	System.out.println("정삼각형의 둘레 : " + t1.getRound());
+	
+	
 }
 }
