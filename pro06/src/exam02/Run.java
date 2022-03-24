@@ -34,5 +34,24 @@ public class Run {
 		System.out.println(Arrays.toString(r.getSubjects()));
 		r.remove("과학");
 		System.out.println(Arrays.toString(r.getSubjects()));
+		
+		Page page = new Page(100);
+		
+		page.nextPage();
+		System.out.println(page.getPageNumber() + " 페이지 입니다");
+		page.nextPage();
+		System.out.println(page.getPageNumber() + " 페이지 입니다");
+		
+		for (int i = 0; i < page.getlimitPageNumber(); i++) {
+			page.nextPage();
+			System.out.println(page.getPageNumber() + " 페이지 입니다");
+			
+		}
+		
+		while (page.existPrevPage()) {
+			page.prevPage();
+			System.out.println(page.getPageNumber() + " 페이지 입니다");
+
+		}
 	}
 }
