@@ -45,5 +45,21 @@ public class PersonList {
 			this.pList =temp;
 			this.pList[0] = person;
 	}
+	public void remove(int index) {
+		Person[] temp = new Person[this.length() -1];
+		int idx = 0;
+		for (int i = 0; i < this.length(); i++) {
+			if(i != index) {
+			temp[idx++] = this.pList[i];
+			}
+		}
+		this.pList =temp;
+	}
+	public void remove(String name) {
+		this.remove(this.findIndex(name));
+	}
+	
+	
+	
 	
 }

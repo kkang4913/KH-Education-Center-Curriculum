@@ -53,8 +53,14 @@ public class Main {
 		
 		
 		//PersonList에 저장된 Person 객체를 삭제
-		//pList.remove(1); //1번 인덱스에 있는 객체 삭제
-		//pList.remove("아이언맨")); // 이름을 찾아서 삭제
+		System.out.println(pList.get(1).getName());
+		pList.remove(1); //1번 인덱스에 있는 객체 삭제
+		System.out.println(pList.get(1).getName());
+		
+		
+		System.out.println(pList.findIndex("박수무당"));
+		pList.remove("박수무당"); // 이름을 찾아서 삭제
+		System.out.println(pList.findIndex("박수무당"));
 		
 		
 		
