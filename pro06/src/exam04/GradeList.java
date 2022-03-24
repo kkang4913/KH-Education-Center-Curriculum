@@ -32,58 +32,70 @@ public class GradeList {
 			this.gList[idx].setName(dest);
 		}
 	}
-	public void upDate(String src,double score) {
+
+	public void upDate(String src, double score) {
 		int idx = this.findIndex(src);
 		if (idx >= 0) {
-		this.gList[idx].setScore(score);
+			this.gList[idx].setScore(score);
 		}
 	}
-	public void upDate(String src,String dest, double score) {
+
+	public void upDate(String src, String dest, double score) {
 		int idx = this.findIndex(src);
 		if (idx >= 0) {
-		this.gList[idx].setName(dest);
-		this.gList[idx].setScore(score);
+			this.gList[idx].setName(dest);
+			this.gList[idx].setScore(score);
 		}
 	}
+
 	public void upDate(String src, Grade dest) {
 		int idx = this.findIndex(src);
 		if (idx >= 0) {
-		this.gList[idx] = dest; 
+			this.gList[idx] = dest;
 		}
 	}
-	
+
 	public void upDate(int index, String name) {
 		if (_validIndex(index)) {
 			this.gList[index].setName(name);
 		}
 	}
+
 	public void upDate(int index, double score) {
 		if (_validIndex(index)) {
-		this.gList[index].setScore(score);
+			this.gList[index].setScore(score);
 		}
 	}
+
 	public void upDate(int index, String name, double socre) {
 		if (_validIndex(index)) {
-		this.gList[index].setName(name);
-		this.gList[index].setScore(socre);
+			this.gList[index].setName(name);
+			this.gList[index].setScore(socre);
 		}
 	}
+
 	public void upDate(int index, Grade grade) {
 		if (_validIndex(index)) {
-		this.gList[index] = grade;
+			this.gList[index] = grade;
 		}
 	}
-	// 삭제
 
+	// 삭제
+	public void remove(String name) {
+		int index = findIndex(name);
+		if (index >= 0) {
+			_remove(index);
+		}
+	}
+
+	public void remove(int index) {
+		if (_validIndex(index)) {
+			_remove(index);
+		}
+	}
 	// 조회
-	
-	
-	
-	
-	
-	
-	
-	//공통 기능의 메서드 : 공통된 과목명을 찾는 
+
+	// 추가 공통기능 메서드
 	public int findIndex(String name) {
 		for (int i = 0; i < length(); i++) {
 			Grade data = this.gList[i];
@@ -93,16 +105,28 @@ public class GradeList {
 		}
 		return -1;
 	}
+
 	public int length() {
 		return this.gList.length;
 	}
-	
-	
-	//유효한 범위의 인덱스 인지 확인하는 메서드
-	private boolean _validIndex(int index) {
-		return (index >=0 && index < this.gList.length);
+
+	// 삭제 공통기능 메서드
+	private void _remove(int index) {
+		if (_validIndex(index)) {
+			int idx = 0;
+			Grade[] temp = new Grade[length() - 1];
+			for (int i = 0; i < length(); i++) {
+				if (i != index) {
+					temp[idx++] = this.gList[i];
+				}
+			}
+			this.gList = temp;
+		}
 	}
-	
-	
-	
+
+	// 유효한 범위의 인덱스 인지 확인하는 메서드
+	private boolean _validIndex(int index) {
+		return (index >= 0 && index < this.gList.length);
+	}
+
 }
