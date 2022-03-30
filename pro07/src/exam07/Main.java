@@ -15,12 +15,31 @@ public static void main(String[] args) {
 	Employee[] empArr = new Employee[5];
 	empArr[0] = e1; empArr[1] = e2; empArr[2] = e3; empArr[3] = e4; empArr[4] = e5;
 	
+	//보너스급여 확인 
 	((DepartmentManager)e3).setTeamManager(true);
+	
+	((DeputyGeneralManager)e4).setHeadManager(true);
+
+	((Director)e5).setTeamManager(true);
+	((Director)e5).setHeadManager(true);
+
 	
 	for (int i = 0; i < empArr.length; i++) {
 		System.out.println(empArr[i].getName() + "의 연봉은 " + empArr[i].getSalary() + "만원");
 		empArr[i].payMonth();
-		System.out.println("==================================");
+		empArr[i].bonus();
+		
+		if (empArr[i] instanceof AssistantManager) {
+			((AssistantManager)empArr[i]).corpCard(5000000);
+		}else if (empArr[i] instanceof DepartmentManager) {
+			((DepartmentManager)empArr[i]).corpCard(5000000);
+		}else if (empArr[i] instanceof DeputyGeneralManager) {
+			((DeputyGeneralManager)empArr[i]).corpCard(5000000);
+		}else if (empArr[i] instanceof Director) {
+			((Director)empArr[i]).corpCard(5000000);
+		}
+		
+		System.out.println("=======================================");
 	}
 	
 //	System.out.println(e1.getName() + "의 연봉은 " + e1.getSalary() + "만원");
