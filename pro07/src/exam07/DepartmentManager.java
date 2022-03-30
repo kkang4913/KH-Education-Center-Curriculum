@@ -1,9 +1,8 @@
 package exam07;
 //과장
-public class DepartmentManager extends AssistantManager {
+public class DepartmentManager extends AssistantManager   {
 	
 	private boolean teamManager; //팀장직 수행 여부를 구분(8)
-	
 	
 	//(4)
 	public DepartmentManager(String name, int age) {
@@ -13,10 +12,7 @@ public class DepartmentManager extends AssistantManager {
 	@Override
 	public void payMonth() {
 		super.payMonth();
-		if(teamManager) {
-		double bonusPay =getSalary() * 0.1 /12;
-		System.out.printf("팀장직 수행 보너스 %,d 원을 추가 지급하였습니다.\n",(int)(bonusPay* 10000));
-		}
+		jobPay();
 	}
 	
 	@Override
@@ -25,9 +21,16 @@ public class DepartmentManager extends AssistantManager {
 		case 4: case 8: case 12:
 			super.bonus(month);
 			break;
-
 		}
 	}
+	public void jobPay() {
+		if(isTeamManager()) {
+		double bonusPay =getSalary() * 0.1 /12;
+		System.out.printf("팀장직 수행 보너스 %,d 원을 추가 지급하였습니다.\n",(int)(bonusPay* 10000));
+		}
+	}
+
+	
 	
 	public boolean isTeamManager() {
 		return teamManager;

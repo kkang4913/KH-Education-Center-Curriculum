@@ -17,12 +17,9 @@ public static void main(String[] args) {
 	Employee[] empArr = new Employee[5];
 	empArr[0] = e1; empArr[1] = e2; empArr[2] = e3; empArr[3] = e4; empArr[4] = e5;
 	
-	//보너스급여 확인 
+	//직책 업무별 보너스급여 확인 
 	((DepartmentManager)e3).setTeamManager(true);
-	
 	((DeputyGeneralManager)e4).setHeadManager(true);
-
-	((Director)e5).setTeamManager(true);
 	((Director)e5).setHeadManager(true);
 
 	//모든 직원에 대한 반복(배열)
@@ -35,10 +32,9 @@ public static void main(String[] args) {
 			System.out.println("[" + empArr[i].getName() + "]");
 			empArr[i].payMonth();
 			empArr[i].bonus(month);
-			
-			
 			System.out.println("------------------------------------");
 		}
+		
 		if((rand.nextInt(9) + 1) % 4 == 0) {
 			int idx = rand.nextInt(4) + 1;
 			System.out.println(empArr[idx].getName() + "님이 법카 쏜다 ~");
@@ -46,7 +42,6 @@ public static void main(String[] args) {
 		
 		}
 		System.out.println("=======================================");
-		
 	}
 	
 //	System.out.println(e1.getName() + "의 연봉은 " + e1.getSalary() + "만원");
