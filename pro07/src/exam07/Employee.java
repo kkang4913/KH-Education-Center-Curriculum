@@ -19,7 +19,7 @@ public class Employee {
 		System.out.printf("월급 : %,d 원 지급 하였습니다.\n",(int)(pay* 10000));
 	}
 	//모든 직원들의 보너스급여
-	public void bonus() {
+	public void bonus(int month) {
 		double bonus = getSalary() * 0.25;
 		System.out.printf("보너스 %,d 원 지급하였습니다.\n", (int)bonus * 10000);
 	}
