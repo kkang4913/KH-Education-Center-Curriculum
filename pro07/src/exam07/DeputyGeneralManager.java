@@ -1,6 +1,6 @@
 package exam07;
 //차장
-public class DeputyGeneralManager extends DepartmentManager  {
+public class DeputyGeneralManager extends DepartmentManager implements  HeadManager  {
 	
 	private boolean headManager; //본부장직 수행 여부를 구분(8)
 	
@@ -26,8 +26,9 @@ public class DeputyGeneralManager extends DepartmentManager  {
 			break;
 		}
 	}
+
 	@Override
-	public void jobPay() {
+	public void headPayBonus() {
 		if(isHeadManager()) {
 		double bonusPay =getSalary() * 0.2 /12;
 		System.out.printf("본부장직 수행 보너스 %,d 원을 추가 지급하였습니다.\n",(int)(bonusPay* 10000));
