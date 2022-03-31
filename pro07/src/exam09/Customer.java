@@ -1,6 +1,6 @@
 package exam09;
 
-public abstract class Customer {
+public abstract class Customer implements Basket, Delivery, Payment {
 	private String name;
 	private int age;
 	private char gender;
@@ -11,6 +11,19 @@ public abstract class Customer {
 		this.age = age;
 		this.gender = gender;
 	}
+	
+	public abstract void buy(String productName, double price);
+	@Override
+	public void add(String productName) {
+		
+	}
+	@Override
+	public void add(String productName, int count) {
+		
+	}
+	
+	
+	
 	
 	public String getName() {
 		return name;
@@ -43,22 +56,5 @@ public abstract class Customer {
 	public void setPriceTotal(double priceTotal) {
 		this.priceTotal = priceTotal;
 	}
-	//구매
-	public abstract void buy(String productName, double price);
-	
-	//환불 : 리턴타입, 매개변수 타입을 미리 생각해둬야한다.
-	public abstract boolean refund(String productName);
-	
-	//장바구니 : 리턴타입, 매개변수 타입을 미리 생각해둬야한다.
-	public abstract boolean basket(String productName, int count);
-	
-	//배송조회
-	public abstract String searchDelivery(String orderCode);
-	
-	//포인트적립
-	public abstract int addpoint(int price);
-	
-	//추천상품
-	public abstract String[] suggestionProduct();
-	
+
 }
