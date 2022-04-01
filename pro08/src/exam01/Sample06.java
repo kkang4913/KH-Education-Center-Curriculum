@@ -1,5 +1,6 @@
 package exam01;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -103,6 +104,7 @@ public static void main(String[] args) {
 	 * SimpleDateFormat 클래스
 	 * 		- 날짜 포멧 형식을 자유롭게 만들기 위해 사용하는 클래스
 	 */
+	// 날짜를 문자열로 변환
 	SimpleDateFormat sFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 	String strDate = sFormat.format(new Date());
 	System.out.println("변경 후 날짜 : " + strDate);
@@ -110,6 +112,19 @@ public static void main(String[] args) {
 	sFormat = new SimpleDateFormat("a hh:mm:dd");
 	strDate = sFormat.format(new Date());
 	System.out.println("변경 후 날짜 : " + strDate);
+	
+	sFormat.applyPattern("yyyy-MM-dd");
+	strDate = sFormat.format(new Date());
+	System.out.println(strDate);
+	
+	try {	//문자열을 날짜로 변환 : 패턴이 매치가 되어야 한다.(기억)
+		date = sFormat.parse("2022-01-01");
+		System.out.println(date);
+	} catch (ParseException e) {
+		e.printStackTrace();
+	}
+	
+	
 	
 	
 }
