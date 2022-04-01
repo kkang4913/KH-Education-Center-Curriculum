@@ -2,6 +2,7 @@ package exam01;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Sample02 {
 	Scanner sc = new Scanner(System.in);
@@ -20,10 +21,19 @@ public class Sample02 {
 		
 		System.out.print("정수값 입력 : ");
 		String str = sc.nextLine();
-		String sArr[];
-		sArr = str.split(" ");
+		
+		//Wrapper, StringTokenizer 활용하여 정수배열에 저장.
+		StringTokenizer st = new StringTokenizer(str," ");
+		int[] iArr = new int[st.countTokens()];
+		int idx =0;
+		
+		while (st.hasMoreElements()) {
+			iArr[idx++] = Integer.parseInt(st.nextToken());
+		}
+		
+		
 		System.out.println("다음의 값을 입력하였습니다.");
-		System.out.println(String.join(", ", sArr));
+		System.out.println(Arrays.toString(iArr));
 	}
 	
 	public void ex02() {
@@ -141,7 +151,7 @@ public class Sample02 {
 public static void main(String[] args) {
 	
 	Sample02 s2 = new Sample02();
-	//s2.ex01();
+	s2.ex01();
 	//s2.ex02();
 	//s2.ex03();
 	//s2.ex04();
