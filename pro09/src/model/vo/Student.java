@@ -1,29 +1,26 @@
 package model.vo;
 
-public class Student {
-	private String name;
+public class Student extends Acount  {
 	private Grade[] grades;
 	
 	
 	public Student(String name) {
-		this.name = name;
+		setName(name);
+		setPassword("1111");
 	}
 	
-	
-	
-	public String getName() {
-		return name;
+	public Student(String name, String passWord) {
+		setName(name);
+		setPassword("1111");
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
+
 	public Grade[] getGrades() {
 		return grades;
 	}
 	public void setGrades(Grade[] grades) {
 		this.grades = grades;
 	}
-	
-	
+
 	
 }
