@@ -5,7 +5,6 @@ public abstract  class Acount   {
 	private String password;
 	
 	
-	
 	public String getName() {
 		return name;
 	}

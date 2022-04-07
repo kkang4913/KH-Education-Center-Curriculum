@@ -4,8 +4,8 @@ import model.vo.Teacher;
 
 public class TeacherDatabaseManager {
 	// Teacher 클래스를 관리하기 위함
-
 	private Teacher[] datas;
+
 
 	{
 		datas = new Teacher[2];
@@ -22,4 +22,12 @@ public class TeacherDatabaseManager {
 		return null;
 	}
 
+
+
+
+
+	
+
+	
+	
 }

@@ -1,5 +1,8 @@
 package controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 import model.vo.Acount;
@@ -18,16 +21,11 @@ public class MenuManager {
 	}
 	
 	public void main() {
-
 		if (loginAcount instanceof Teacher) {
 			teacherMenuList();
-			
 		}else {
-			
 			studentMenuList();
-			
 		}
-
 	}
 	/*사용자 입력을 받아서 위의 메뉴에 해당하는 번호를 입력하면 다음의 메서드를 동작
 	 * 	- 성적 조회 : searchMenu();
@@ -40,6 +38,7 @@ public class MenuManager {
 
 	public void teacherMenuList() {
 		// TODO Auto-generated method stub
+		
 		StringBuilder sb =new StringBuilder();
 		sb.append("1. 성적 조회\n");
 		sb.append("2. 학생 정보 추가\n");
@@ -87,7 +86,11 @@ public class MenuManager {
 			
 			switch (menuNumber) {
 			case 1:
-				searchMenu(); break;
+					printGrades(
+							((Student)loginAcount).getName(),
+							((Student)loginAcount).getGrades()
+							);
+					break;
 			case 9:
 				System.out.println("로그아웃되었습니다. ");
 				logout = true;
@@ -98,7 +101,36 @@ public class MenuManager {
 			}
 		}
 	}
+public void printGrades(String name, Grade[] grades) {
+	StringBuilder sb =new StringBuilder();
+	sb.append("이름 : " + name + "\n");
+	sb.append("-----------------------\n");
+	for (int i = 0; i < grades.length; i++) {
+		sb.append(grades[i].getName() + "\t");
+	}
+	sb.append("\n");
+	double avg = 0;
+	for (int i = 0; i < grades.length; i++) {
+		sb.append(grades[i].getScoer() + "점\t");
+		avg += grades[i].getScoer();
+	}
+	avg /= grades.length;
+	sb.append("\n");
+	for (int i = 0; i < grades.length; i++) {
+		sb.append(grades[i].getLevel() + "등급\t");
+	}
+	sb.append("\n");
+	sb.append("-------------------------\n");
+	sb.append("평균 : " + avg + "\n");
+	sb.append("-------------------------\n");
 
+	System.out.println(sb.toString());
+}
+
+
+	
+	
+	
 	public void searchMenu() {
 		/*
 		 * DatabaseManager 클래스의 search 메서드를 사용하여 성적 정보가 출력될 수 있게 한다.
@@ -118,34 +150,10 @@ public class MenuManager {
 		Grade[] grades =dm.search(name);
 		if(grades ==null) {
 			System.out.println("입력한 학생의 정보를 찾을 수 없습니다.다시 입력해주세요.");
-		}else {
-			StringBuilder sb =new StringBuilder();
-			sb.append("이름 : " + name + "\n");
-			sb.append("-----------------------\n");
-			for (int i = 0; i < grades.length; i++) {
-				sb.append(grades[i].getName() + "\t");
-			}
-			sb.append("\n");
-			double avg = 0;
-			for (int i = 0; i < grades.length; i++) {
-				sb.append(grades[i].getScoer() + "점\t");
-				avg += grades[i].getScoer();
-			}
-			avg /= grades.length;
-			sb.append("\n");
-			for (int i = 0; i < grades.length; i++) {
-				sb.append(grades[i].getLevel() + "등급\t");
-			}
-			sb.append("\n");
-			sb.append("-------------------------\n");
-			sb.append("평균 : " + avg + "\n");
-			sb.append("-------------------------\n");
-
-			System.out.println(sb.toString());
-			break;
 		}
 		}
 	}
+		
 	public void StudentAddMenu() {
 		while(true) {
 		System.out.print("추가할 학생의 이름 : ");

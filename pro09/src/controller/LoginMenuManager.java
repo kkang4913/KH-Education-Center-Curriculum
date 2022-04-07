@@ -1,5 +1,8 @@
 package controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 import model.vo.Acount;
@@ -54,6 +57,17 @@ public class LoginMenuManager {
 			Acount loginAcount = tDB.login(username, password);
 
 			if (loginAcount != null) {
+				if (((Teacher)loginAcount).getLoginDate() != null) {
+					System.out.println("최근 접속 시간 : "	+((Teacher)loginAcount).getLoginDateFomat()); 
+				}else {
+					System.out.println("첫 로그인을 환영합니다.");
+				}
+				
+				((Teacher)loginAcount).setLoginDate(new Date());
+
+				SimpleDateFormat sFormat = new SimpleDateFormat("yyyy년 MM월 dd일 a hh시 mm분 ss초");
+				System.out.println("현재 접속 시간 : " + sFormat.format(new Date()));
+				
 				MenuManager m = new MenuManager(loginAcount);
 				m.main();
 				break;
