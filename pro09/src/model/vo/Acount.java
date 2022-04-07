@@ -18,5 +18,14 @@ public abstract  class Acount   {
 		this.password = password;
 	}
 	
+	public boolean changePassword(String curPass, String changePass) {
+		if (curPass.equals(changePass)) {
+			setPassword(changePass);
+		return true;
+		}
+		return false;
+	}
+	
+	
 	
 	}

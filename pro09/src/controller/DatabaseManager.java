@@ -3,6 +3,7 @@ package controller;
 import java.util.Arrays;
 import model.vo.Grade;
 import model.vo.Student;
+import model.vo.Teacher;
 
 public class DatabaseManager implements ImplDatabaseManager {
 
@@ -84,8 +85,6 @@ public class DatabaseManager implements ImplDatabaseManager {
 	}
 	
 	
-	
-	
 	public int length() {
 		return this.datas.length;
 	}
@@ -94,13 +93,23 @@ public class DatabaseManager implements ImplDatabaseManager {
 		for (int i = 0; i < length(); i++) {
 			if(name.equals(datas[i].getName())){
 				idx = i;
+				break;
 			}
 		}
 		return idx;
 	}
 	
-
+	public Student getStudent(String name) {
+		return datas[_findIndex(name)];
+	}
 	
+	public boolean isExisted(String name) {
+		boolean result = false;
+		if (_findIndex(name) != -1) {
+			result = true;
+		}
+		return result;
+	}
 	
 	
 }

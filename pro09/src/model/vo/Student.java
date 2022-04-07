@@ -1,5 +1,7 @@
 package model.vo;
 
+import java.util.Random;
+
 public class Student extends Acount  {
 	private Grade[] grades;
 	
@@ -22,5 +24,16 @@ public class Student extends Acount  {
 		this.grades = grades;
 	}
 
+	public String resetPassword() {
+		Random rand = new Random();
+		String prefix = "STD_";
+		String newPass = "";
+		
+		for (int i = 0; i < 6; i++) {
+			newPass += (char)(rand.nextInt(26) + 65);
+		}
+		setPassword(prefix + newPass);
+		return prefix + newPass;
+	}
 	
 }
