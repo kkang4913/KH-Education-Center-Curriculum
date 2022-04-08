@@ -1,5 +1,7 @@
 package model.vo;
 
+import exception.GradeScoreException;
+
 public class Grade extends Subject {
 	private double score;
 	private char level;
@@ -24,8 +26,12 @@ public class Grade extends Subject {
 	public double getScoer() {
 		return score;
 	}
-	public void setScoer(double scoer) {
-		this.score = scoer;
+	public void setScoer(double score) throws GradeScoreException {
+		if (!(score >=0 && score <= 100)) {
+			throw new GradeScoreException("점수의 범위는 0 ~ 100 사이로만 사용해야 합니다.");
+		}
+		
+		this.score = score;
 		this.level = this.levelArr[(int)(this.score /10)];
 		
 //		if(score <= 100 && score >= 90) {

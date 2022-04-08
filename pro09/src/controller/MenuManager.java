@@ -177,6 +177,9 @@ public void printGrades(String name, Grade[] grades) {
 		Grade[] grades =dm.search(name);
 		if(grades ==null) {
 			System.out.println("입력한 학생의 정보를 찾을 수 없습니다.다시 입력해주세요.");
+		} else {
+			printGrades(name, grades);
+			break;
 		}
 		}
 	}
