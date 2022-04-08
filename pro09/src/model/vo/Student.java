@@ -8,12 +8,12 @@ public class Student extends Acount  {
 	
 	public Student(String name) {
 		setName(name);
-		setPassword("1111");
+		setPassword("11Aa");
 	}
 	
 	public Student(String name, String passWord) {
 		setName(name);
-		setPassword("1111");
+		setPassword("11Aa");
 	}
 
 
@@ -29,9 +29,9 @@ public class Student extends Acount  {
 		String prefix = "STD_";
 		String newPass = "";
 		
-		for (int i = 0; i < 6; i++) {
-			int idx = rand.nextInt(2);
-			
+		
+		for (int i = 0; i < rand.nextInt(5) + 4; i++) {
+			int idx = rand.nextInt(3);
 			switch (idx) {
 			case 0:
 				newPass += (char)(rand.nextInt(26) + 97 );
@@ -39,10 +39,14 @@ public class Student extends Acount  {
 			case 1:
 				newPass += (char)(rand.nextInt(26) + 65 );
 				break;
+			case 2:
+				newPass += rand.nextInt(10) + 1;
+				break;
 
 			}
 
 		}
+		
 		setPassword(prefix + newPass);
 		return prefix + newPass;
 	}

@@ -1,5 +1,8 @@
 package model.vo;
 
+import java.util.Iterator;
+
+import exception.GradeLevelException;
 import exception.GradeScoreException;
 
 public class Grade extends Subject {
@@ -27,12 +30,13 @@ public class Grade extends Subject {
 		return score;
 	}
 	public void setScoer(double score) throws GradeScoreException {
-		if (!(score >=0 && score <= 100)) {
+		if(!(score >= 0 && score <= 100)) {
 			throw new GradeScoreException("점수의 범위는 0 ~ 100 사이로만 사용해야 합니다.");
 		}
-		
 		this.score = score;
 		this.level = this.levelArr[(int)(this.score /10)];
+		
+		
 		
 //		if(score <= 100 && score >= 90) {
 //			this.level = 'A';
@@ -52,8 +56,11 @@ public class Grade extends Subject {
 		
 		return level;
 	}
-	public void setLevel(char level) {
-		 
+	public void setLevel(char level) throws GradeLevelException {
+		 if (level >= 'A' && level <= 'F') {
+			 throw new GradeLevelException("A ~ F 사이의 범위로만 설정하시오.");
+			
+		}
 	}
 	
 	

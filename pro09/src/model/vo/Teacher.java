@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
+import exception.GradeException;
+
 public class Teacher extends Acount {
 	// 날짜로 로그인데이터 멤버변수를 생성
 	private Date loginDate;
@@ -11,7 +13,7 @@ public class Teacher extends Acount {
 	
 	public Teacher(String name) {
 		setName(name);
-		setPassword("1111");
+		setPassword("11Aa");
 	}
 	
 	public Teacher(String name, String passWord) {
@@ -38,8 +40,8 @@ public class Teacher extends Acount {
 		String prefix = "TCH_";
 		String newPass = "";
 		
-		for (int i = 0; i < 6; i++) {
-			int idx = rand.nextInt(2);
+		for (int i = 0; i < rand.nextInt(5) + 4; i++) {
+			int idx = rand.nextInt(3);
 			switch (idx) {
 			case 0:
 				newPass += (char)(rand.nextInt(26) + 97 );
@@ -47,10 +49,14 @@ public class Teacher extends Acount {
 			case 1:
 				newPass += (char)(rand.nextInt(26) + 65 );
 				break;
+			case 2:
+				newPass += rand.nextInt(10) + 1;
+				break;
 
 			}
 
 		}
+		
 		setPassword(prefix + newPass);
 		return prefix + newPass;
 	}

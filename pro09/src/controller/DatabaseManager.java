@@ -2,6 +2,8 @@ package controller;
 
 import java.util.Arrays;
 
+import exception.GradeException;
+import exception.GradeLevelException;
 import exception.GradeScoreException;
 import model.vo.Grade;
 import model.vo.Student;
@@ -13,9 +15,9 @@ public class DatabaseManager implements ImplDatabaseManager {
 	//초기화 블록
 	{
 		datas = new Student[5];
-		datas[0] = new Student("홍길동","0000"); datas[1] = new Student("이순신","0000");
-		datas[2] = new Student("이상구","0000"); datas[3] = new Student("우제현","0000");
-		datas[4] = new Student("장발장","0000");
+		datas[0] = new Student("홍길동","11Aa"); datas[1] = new Student("이순신","11Aa");
+		datas[2] = new Student("이상구","11Aa"); datas[3] = new Student("우제현","11Aa");
+		datas[4] = new Student("장발장","11Aa");
 		
 		for (int i = 0; i < datas.length; i++) {
 			datas[i].setGrades(new Grade[] {
@@ -63,7 +65,11 @@ public class DatabaseManager implements ImplDatabaseManager {
 			Grade[] grades =datas[idx].getGrades();
 			for (int i = 0; i < grades.length; i++) {
 				if (subject.equals(grades[i].getName())) {
-						grades[i].setScoer(score);
+						try {
+							grades[i].setScoer(score);
+						} catch (GradeException e) {
+							// TODO Auto-generated catch block
+						}
 					break;
 				}
 			}

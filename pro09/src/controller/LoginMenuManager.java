@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
+import exception.GradeException;
 import model.vo.Acount;
 import model.vo.Student;
 import model.vo.Teacher;
@@ -38,7 +39,12 @@ public class LoginMenuManager {
 			switch (menuNum.charAt(0)) {
 			case '1':
 				System.out.println("====교사용 성적 관리 프로그램 실행 ====");
-				teacherLoginMenu();
+				try {
+					teacherLoginMenu();
+				} catch (GradeException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 			case '2':
 				System.out.println("====학생용 성적 관리 프로그램 실행 ====");
@@ -105,14 +111,19 @@ public class LoginMenuManager {
 	}
 
 
-	private void teacherLoginMenu() {
+	private void teacherLoginMenu() throws GradeException {
 		System.out.print("이름 : ");
 		String username = sc.nextLine();
 
 		for (int i = 0; i < 3; i++) {
 			System.out.print("패스워드 : ");
 			String password = sc.nextLine();
-
+			
+			
+			if (!(password.length() >=4 && password.length() <=12)) {
+				throw new GradeException("4 ~ 12자의 범위를 벗어났습니다.");
+			}
+			
 			Teacher loginAcount = tDB.login(username, password);
 
 			if (loginAcount != null) {
