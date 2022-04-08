@@ -2,6 +2,7 @@ package controller;
 
 import java.util.Arrays;
 
+import exception.DuplicateException;
 import exception.GradeException;
 import exception.GradeLevelException;
 import exception.GradeScoreException;
@@ -45,7 +46,9 @@ public class DatabaseManager implements ImplDatabaseManager {
 	@Override
 	public boolean add(String name) {
 		int idx = _findIndex(name);
-		if (idx == -1) {
+		if (idx != -1) {
+			throw new DuplicateException("중복된 이름을 사용할 수 없습니다.");
+		}
 			this.datas = Arrays.copyOf(this.datas, length() + 1);
 			datas[length() - 1] = new Student(name);
 			Grade[] init = new Grade[] {
@@ -54,8 +57,6 @@ public class DatabaseManager implements ImplDatabaseManager {
 			datas[length() -1].setGrades(init);
 			return true;
 		}
-		return false;
-	}
 
 	@Override
 	public Student modify(String name, String subject, int score) {

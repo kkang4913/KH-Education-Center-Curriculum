@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 import exception.GradeException;
+import exception.GradeNameException;
 import model.vo.Acount;
 import model.vo.Student;
 import model.vo.Teacher;
@@ -114,7 +115,28 @@ public class LoginMenuManager {
 	private void teacherLoginMenu() throws GradeException {
 		System.out.print("이름 : ");
 		String username = sc.nextLine();
-
+		
+		boolean numberExisted = false;
+		boolean upperrExisted = false;
+		boolean lowerExisted = false;
+		
+		
+		for (int i = 0; i < username.length(); i++) {
+				if (username.charAt(i) >= '0' && username.charAt(i) <= '9') {
+					numberExisted =true;
+				}
+			if (username.charAt(i) >= 'A' && username.charAt(i) <= 'Z') {
+				upperrExisted =true;
+			}
+			if (username.charAt(i) >= 'a' && username.charAt(i) <= 'z') {
+				lowerExisted =true;
+			}
+		}
+		if ((numberExisted && upperrExisted && lowerExisted)) {
+			throw new GradeNameException("입력한 이름값에는 대소문자/숫자가 들어가지 않습니다."); 
+		}
+		
+		
 		for (int i = 0; i < 3; i++) {
 			System.out.print("패스워드 : ");
 			String password = sc.nextLine();

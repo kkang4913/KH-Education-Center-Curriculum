@@ -54,9 +54,7 @@ public class Teacher extends Acount {
 				break;
 
 			}
-
 		}
-		
 		setPassword(prefix + newPass);
 		return prefix + newPass;
 	}
