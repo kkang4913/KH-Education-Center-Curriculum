@@ -16,30 +16,38 @@ public class LoginMenuManager {
 
 	public void main() {
 		StringBuilder sb = new StringBuilder();
-
+		// String 빌더를 통해 새로운 객체가 아닌 문자열 바로 추가
 		sb.append("=====성적 관리 프로그램 실행=====\n");
 		sb.append("1. 교사용 로그인\n");
 		sb.append("2. 학생용 로그인\n");
 		sb.append("3. 패스워드 초기화\n");
 		sb.append("9. 프로그램 종료\n");
 		sb.append(">>>>>");
-
+		
+		
+		// 반복문 안의 조건식 확인 true 수행된다.
 		while (true) {
+			// 위의 String sb 를 출력 
 			System.out.println(sb.toString());
-			int menuNum = Integer.parseInt(sc.nextLine());
-			switch (menuNum) {
-			case 1:
+			/*
+			 * int menuNum = sc.nextInt();
+			 * switch(menuNum)
+			 */
+			
+			String menuNum = sc.nextLine();
+			switch (menuNum.charAt(0)) {
+			case '1':
 				System.out.println("====교사용 성적 관리 프로그램 실행 ====");
 				teacherLoginMenu();
 				break;
-			case 2:
+			case '2':
 				System.out.println("====학생용 성적 관리 프로그램 실행 ====");
 				studentLoginMenu();
 				break;
-			case 3:
+			case '3':
 				resetPasswordMenu();
 				break;
-			case 9:
+			case '9':
 				System.out.println("프로그램을 종료합니다.");
 				System.exit(0);
 				break;
@@ -105,10 +113,10 @@ public class LoginMenuManager {
 			System.out.print("패스워드 : ");
 			String password = sc.nextLine();
 
-			Acount loginAcount = tDB.login(username, password);
+			Teacher loginAcount = tDB.login(username, password);
 
 			if (loginAcount != null) {
-				if (((Teacher)loginAcount).getLoginDate() != null) {
+				if (loginAcount.getLoginDate() != null) {
 					System.out.println("최근 접속 시간 : "	+((Teacher)loginAcount).getLoginDateFomat()); 
 				}else {
 					System.out.println("첫 로그인을 환영합니다.");
@@ -135,7 +143,7 @@ public class LoginMenuManager {
 			System.out.print("패스워드 : ");
 			String password = sc.nextLine();
 
-			Acount loginAcount = dDB.login(username, password);
+			Student loginAcount = dDB.login(username, password);
 
 			if (loginAcount != null) {
 				MenuManager m = new MenuManager(loginAcount);

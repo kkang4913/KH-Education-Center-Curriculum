@@ -39,7 +39,17 @@ public class Teacher extends Acount {
 		String newPass = "";
 		
 		for (int i = 0; i < 6; i++) {
-			newPass += (char)(rand.nextInt(26) + 65);
+			int idx = rand.nextInt(2);
+			switch (idx) {
+			case 0:
+				newPass += (char)(rand.nextInt(26) + 97 );
+				break;
+			case 1:
+				newPass += (char)(rand.nextInt(26) + 65 );
+				break;
+
+			}
+
 		}
 		setPassword(prefix + newPass);
 		return prefix + newPass;
