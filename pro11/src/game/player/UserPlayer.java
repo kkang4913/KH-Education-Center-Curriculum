@@ -34,7 +34,7 @@ public class UserPlayer implements Player {
 	@Override
 	public String versus(Hand h1) {
 		String res ="";
-		switch ( hand.compare(h1)) {
+		switch (hand.compare(h1)) {
 		case -1:
 			res = "패배";
 			record.addLose();
@@ -78,7 +78,12 @@ public class UserPlayer implements Player {
 			hand = new Bawi();
 		} else if(handName.equals("보")) {
 			hand = new Bo();
-		} else {
+		} else if(handName.equals("종료")) {
+			System.out.println("┏----------------------------┓");
+			System.out.println("┃------- Program exit -------┃");
+			System.out.println("┗----------------------------┛");
+			System.exit(0);
+		}else {
 			this.randomCardHand();
 		}
 	}
