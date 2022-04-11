@@ -24,7 +24,6 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		UserPlayer uPlay = new UserPlayer();
 		ComPlayer cPlay = new ComPlayer();
-		Hand uHand = null, cHand;
 		String uRes, cRes;
 				 
 		System.out.println("가위 바위 보 게임을 진행합니다.");
@@ -32,7 +31,7 @@ public class Main {
 		System.out.println("입력하지 않고 Enter 키를 누른 경우 랜덤으로 생성합니다.");
 		
 		while (true) {
-			System.out.print("가위/바위/보 >>> ");
+			System.out.print("가위/바위/보 or 종료 >>> ");
 			String userInput = sc.nextLine();
 			
 			uPlay.setHand(userInput);
