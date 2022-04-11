@@ -13,6 +13,9 @@ public class UserPlayer implements Player {
 	private Random rand= new  Random();
 	private Hand hand;
 	private Record record = new Record();
+	private int loseCont;
+	private int cheatCnt;
+
 	
 	@Override
 	public void randomCardHand() {
@@ -35,15 +38,23 @@ public class UserPlayer implements Player {
 		case -1:
 			res = "패배";
 			record.addLose();
+			loseCont++;
 			break;
 		case 0:
 			res = "무승부";
 			record.addDraw();
+			loseCont = 0;
+
 			break;
 		case 1:
 			res = "승리";
 			record.addWin();
+			loseCont = 0;
+
 			break;
+		}
+		if (loseCont ==3) {
+			cheatCnt++;
 		}
 		return res;
 	}
@@ -71,6 +82,8 @@ public class UserPlayer implements Player {
 			this.randomCardHand();
 		}
 	}
-
+	public  int getCheatCnt() {
+		return cheatCnt;
+	}
 
 }
