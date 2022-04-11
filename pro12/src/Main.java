@@ -32,14 +32,16 @@ public static void main(String[] args) {
 	// 3. Down 클래스 :  클래스로만 생성하여 쓰도록 한다. 
 	// 4. Fail 클래스 :  클래스로만 생성하여 쓰도록 한다.
 	// 5. correct 클래스 :  클래스로만 생성하여 쓰도록 한다.
-
+	GuessNum guess = new GuessNum();
+	
+	
 	Scanner sc= new Scanner(System.in);
 	System.out.println("UP and DOWN 게임입니다.");
 	System.out.println("임의로 생성된 값을 맞추어 보세요.");
 	System.out.println("기본 생성값은 1 ~ 100 사이의 값 입니다.");
 	
 	while (true) {
-		GuessNum guess = new GuessNum();
+	guess = new GuessNum(100,200,10);
 		
 		while (true) {
 			System.out.print(">>>>>> ");
@@ -52,15 +54,8 @@ public static void main(String[] args) {
 				System.out.println("새로운 값을 생성합니다.");
 				break;
 			}
-			
 		}
-		
-		
-		
-		
-		
 	}
-	
 	
 	}
 }
