@@ -40,6 +40,8 @@ public static void main(String[] args) { //throws FileNotFoundException {
 		}
 		System.out.println(new String(bytes));
 		
+		fis.close(); //안하면 메모리 누수의 원인
+		
 	} catch (FileNotFoundException e) {
 		System.out.println("해당 파일을 찾지 못하였습니다."); // 오타, 잦은 실수 등등
 		e.printStackTrace();
