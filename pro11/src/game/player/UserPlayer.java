@@ -15,8 +15,10 @@ public class UserPlayer implements Player {
 	private Record record = new Record();
 	private int loseCont;
 	private int cheatCnt;
-
 	
+
+
+
 	@Override
 	public void randomCardHand() {
 		int r = rand.nextInt(3);
@@ -78,17 +80,23 @@ public class UserPlayer implements Player {
 			hand = new Bawi();
 		} else if(handName.equals("보")) {
 			hand = new Bo();
-		} else if(handName.equals("종료")) {
-			System.out.println("┏----------------------------┓");
-			System.out.println("┃------- Program exit -------┃");
-			System.out.println("┗----------------------------┛");
-			System.exit(0);
+		
 		}else {
 			this.randomCardHand();
 		}
 	}
 	public  int getCheatCnt() {
 		return cheatCnt;
+	}
+
+	public void setRecord(int[] record) {
+		// TODO Auto-generated method stub
+		this.record.setRecord(record);
+	}
+
+	public int[] getRecord() {
+		// TODO Auto-generated method stub
+		return this.record.getScore();
 	}
 
 }

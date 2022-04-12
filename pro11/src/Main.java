@@ -1,11 +1,16 @@
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import game.card.Bawi;
 import game.card.Bo;
 import game.card.Gawi;
 import game.card.Hand;
+import game.db.Database;
 import game.player.ComPlayer;
 import game.player.UserPlayer;
+import game.record.Record;
 
 public class Main {
 
@@ -24,8 +29,13 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		UserPlayer uPlay = new UserPlayer();
 		ComPlayer cPlay = new ComPlayer();
+		Database db = new Database();
 		String uRes, cRes;
 				 
+		int[] record =db.load();
+		uPlay.setRecord(record);
+		
+		
 		System.out.println("가위 바위 보 게임을 진행합니다.");
 		System.out.println("가위 바위 보 중 하나를 입력하세요.");
 		System.out.println("입력하지 않고 Enter 키를 누른 경우 랜덤으로 생성합니다.");
@@ -33,6 +43,13 @@ public class Main {
 		while (true) {
 			System.out.print("가위/바위/보 or 종료 >>> ");
 			String userInput = sc.nextLine();
+			
+			if (userInput.equals("종료")) {
+				System.out.println("전적 기록을 저장합니다.");
+				db.save(uPlay.getRecord());
+				break;
+			}
+			
 			
 			uPlay.setHand(userInput);
 			cPlay.randomCardHand();
@@ -48,9 +65,8 @@ public class Main {
 			
 			
 			System.out.println(uPlay.getTotalRecord());
+			
 		}
-		
-		
 	}
-
+	
 }
