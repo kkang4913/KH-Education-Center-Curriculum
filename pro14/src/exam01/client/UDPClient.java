@@ -6,6 +6,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
 public class UDPClient {
 public static void main(String[] args) {
@@ -41,14 +42,19 @@ public static void main(String[] args) {
 		/*
 		 * 3. 서버에 데이터 송신하기 위한 패킷 생성 (서버가 활성화 되어 있어여 한다.)
 		 */
-		byte[] data = "Hello".getBytes();
-		DatagramPacket packet = new DatagramPacket(data, data.length,serverIp,serverPort);
-		udpSock.send(packet);
 		
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+			System.out.print("서버에 전송할 데이터를 입력 : ");
+			String userdata = sc.nextLine();
+			byte[] data = userdata.getBytes();
+			DatagramPacket packet = new DatagramPacket(data, data.length, serverIp, serverPort);
+			udpSock.send(packet);
+		}
 		/*
 		 * 4. 데이터 송신을 완료하였으면 모든 자원 반납.
 		 */
-		udpSock.close();
+		//udpSock.close();
 		
 		
 		
