@@ -1,5 +1,6 @@
 package db;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -24,19 +25,15 @@ public class PenaltyDatabase {
 
 	private void _load() {
 		if (file.exists()) {
-			try (FileReader fr = new FileReader(file)) {
+			try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 				StringBuilder sb = new StringBuilder();
 				char[] buff = new char[1024];
 
-				while (true) {
-					int size = fr.read(buff);
-					if (size == -1) {
-						break;
-					}
-					sb.append(buff, 0, size);
-				}
-				this.datas = sb.toString().split("\n");
-
+			while (br.ready()) {
+				String line = br.readLine();
+				sb.append(line);
+			}
+				System.out.println(sb.toString());
 			} catch (FileNotFoundException e) {
 				System.out.println("해당 파일이 존재하지 않습니다.");
 				e.printStackTrace();
