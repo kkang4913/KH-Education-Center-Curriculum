@@ -42,7 +42,7 @@ SELECT '!' || LPAD('A',4) AS Col1
 	FROM DUAL;
 
 -- 위치를 지정 원하는 글자수 까지 잘라내는 기능
-SELECT SUBSTR('smaple@example.com',1,6) AS Col1
+SELECT SUBSTR('smaple@example.com',8,9) AS Col1
 	  ,SUBSTR('smaple@example.com',8,7) AS Col2
 	  ,SUBSTR('smaple@example.com',-18,6) AS Col3
 	  ,SUBSTR('smaple@example.com',-11,7) AS Col4
