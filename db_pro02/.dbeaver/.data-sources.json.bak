@@ -69,7 +69,7 @@
 				"host": "localhost",
 				"port": "1521",
 				"database": "ORCL",
-				"url": "jdbc:oracle:thin:@db202204211937_medium?TNS_ADMIN=C:\\\\Users\\\\kang\\\\eclipse\\\\oracle\\\\Wallet_DB202204211937_2",
+				"url": "jdbc:oracle:thin:@db202204211937_low?TNS_ADMIN=C:\\\\Users\\\\kang\\\\eclipse\\\\oracle\\\\Wallet_DB202204211937_2",
 				"type": "dev",
 				"provider-properties": {
 					"@dbeaver-connection-type@": "CUSTOM",
@@ -85,8 +85,161 @@
 					"oracle.meta-search-in-synonyms": "false",
 					"@dbeaver-sid-service@": "SERVICE"
 				},
-				"auth-model": "oracle_native",
-				"handlers": {}
+				"auth-model": "oracle_native"
+			}
+		},
+		"oracle_thin-18074c19a68-7efca397fffbac5d": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "Cloud_ORCL",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "javachip.iptime.org",
+				"port": "1521",
+				"database": "XEPDB1",
+				"url": "jdbc:oracle:thin:@//javachip.iptime.org:1521/XEPDB1",
+				"type": "dev",
+				"properties": {
+					"useFetchSizeWithLongColumn": "true",
+					"loginTimeout": "20",
+					"oracle.jdbc.fanEnabled": "false"
+				},
+				"provider-properties": {
+					"show-only-one-schema@": "false",
+					"@dbeaver-check-schema-content@": "false",
+					"@dbeaver-always-show-dba@": "false",
+					"@dbeaver-always-use-dba-views@": "false",
+					"@dbeaver-meta-use-sys-schema@": "false",
+					"@dbeaver-meta-use-simple-constraints@": "false",
+					"@dbeaver-use-rule-hint@": "false",
+					"@dbeaver-use-meta-optimizer@": "true",
+					"@dbeaver-meta-use-alternative-table-query@": "false",
+					"oracle.meta-search-in-synonyms": "false",
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-sid-service@": "SERVICE"
+				},
+				"auth-model": "oracle_native"
+			}
+		},
+		"oracle_thin-18089b7f69f-62f3b030a023363": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "XEPDB1_ADMIN",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "1521",
+				"database": "XEPDB1",
+				"url": "jdbc:oracle:thin:@//localhost:1521/XEPDB1",
+				"home": "C:\\app\\kang\\product\\21c\\dbhomeXE",
+				"type": "dev",
+				"provider-properties": {
+					"show-only-one-schema@": "false",
+					"@dbeaver-check-schema-content@": "false",
+					"@dbeaver-always-show-dba@": "false",
+					"@dbeaver-always-use-dba-views@": "false",
+					"@dbeaver-meta-use-sys-schema@": "false",
+					"@dbeaver-meta-use-simple-constraints@": "false",
+					"@dbeaver-use-rule-hint@": "false",
+					"@dbeaver-use-meta-optimizer@": "true",
+					"@dbeaver-meta-use-alternative-table-query@": "false",
+					"oracle.meta-search-in-synonyms": "false",
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-sid-service@": "SERVICE"
+				},
+				"auth-model": "oracle_native"
+			}
+		},
+		"oracle_thin-1808de29454-25d5e1fabc6410c": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "XEPDB1_DEAVDMIN",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "1521",
+				"database": "XEPDB1",
+				"url": "jdbc:oracle:thin:@//localhost:1521/XEPDB1",
+				"home": "C:\\app\\kang\\product\\21c\\dbhomeXE",
+				"type": "dev",
+				"provider-properties": {
+					"show-only-one-schema@": "false",
+					"@dbeaver-check-schema-content@": "false",
+					"@dbeaver-always-show-dba@": "false",
+					"@dbeaver-always-use-dba-views@": "false",
+					"@dbeaver-meta-use-sys-schema@": "false",
+					"@dbeaver-meta-use-simple-constraints@": "false",
+					"@dbeaver-use-rule-hint@": "false",
+					"@dbeaver-use-meta-optimizer@": "true",
+					"@dbeaver-meta-use-alternative-table-query@": "false",
+					"oracle.meta-search-in-synonyms": "false",
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-sid-service@": "SERVICE"
+				},
+				"auth-model": "oracle_native"
+			}
+		},
+		"oracle_thin-1808de4d6d1-43f897c482ca91a": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "XEPDB1_PUSER1",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "1521",
+				"database": "XEPDB1",
+				"url": "jdbc:oracle:thin:@//localhost:1521/XEPDB1",
+				"home": "C:\\app\\kang\\product\\21c\\dbhomeXE",
+				"type": "dev",
+				"provider-properties": {
+					"show-only-one-schema@": "false",
+					"@dbeaver-check-schema-content@": "false",
+					"@dbeaver-always-show-dba@": "false",
+					"@dbeaver-always-use-dba-views@": "false",
+					"@dbeaver-meta-use-sys-schema@": "false",
+					"@dbeaver-meta-use-simple-constraints@": "false",
+					"@dbeaver-use-rule-hint@": "false",
+					"@dbeaver-use-meta-optimizer@": "true",
+					"@dbeaver-meta-use-alternative-table-query@": "false",
+					"oracle.meta-search-in-synonyms": "false",
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-sid-service@": "SERVICE"
+				},
+				"auth-model": "oracle_native"
+			}
+		},
+		"oracle_thin-180a8597697-6f186c438a8093a": {
+			"provider": "oracle",
+			"driver": "oracle_thin",
+			"name": "XEPDB1_ADMIN 1",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "1521",
+				"database": "XEPDB1",
+				"url": "jdbc:oracle:thin:@//localhost:1521/XEPDB1",
+				"home": "C:\\app\\kang\\product\\21c\\dbhomeXE",
+				"type": "dev",
+				"provider-properties": {
+					"show-only-one-schema@": "false",
+					"@dbeaver-check-schema-content@": "false",
+					"@dbeaver-always-show-dba@": "false",
+					"@dbeaver-always-use-dba-views@": "false",
+					"@dbeaver-meta-use-sys-schema@": "false",
+					"@dbeaver-meta-use-simple-constraints@": "false",
+					"@dbeaver-use-rule-hint@": "false",
+					"@dbeaver-use-meta-optimizer@": "true",
+					"@dbeaver-meta-use-alternative-table-query@": "false",
+					"oracle.meta-search-in-synonyms": "false",
+					"@dbeaver-connection-type@": "BASIC",
+					"@dbeaver-sid-service@": "SERVICE"
+				},
+				"auth-model": "oracle_native"
 			}
 		}
 	},
@@ -95,7 +248,7 @@
 			"name": "Development",
 			"color": "255,255,255",
 			"description": "Regular development database",
-			"auto-commit": true,
+			"auto-commit": false,
 			"confirm-execute": false,
 			"confirm-data-change": false,
 			"auto-close-transactions": false
