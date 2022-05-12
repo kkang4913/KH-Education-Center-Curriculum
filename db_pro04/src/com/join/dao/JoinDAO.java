@@ -16,7 +16,7 @@ public class JoinDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	} 
 	//오라클 클라우드
 //	try {
 //		db = new DBConn(new File(System.getProperty("user.home") + "/oracle_db2.conf"));

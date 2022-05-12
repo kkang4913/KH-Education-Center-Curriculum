@@ -34,7 +34,7 @@ public class DBConn {
 			}
 			if (map.get("host") != null) {
 				url_address = String.format("%s:%s/%s",map.get("host"),map.get("port"),map.get("service"));
-				
+				 
 			}else if (map.get("tns_alias") !=null) {
 				url_address = String.format("%S?TNS_ADMIN=%s",map.get("tns_alias"),map.get("wallet_path "));
 			}else {
