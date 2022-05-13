@@ -1,5 +1,7 @@
 package com.join.View;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 import com.join.controller.JoinController;
@@ -98,7 +100,30 @@ public class JoinView {
 			String input = sc.nextLine();
 			
 			switch (input) {
-			case "1":			
+			case "1":
+				System.out.println(account.getUserid());
+				System.out.println(account.getUsername());
+				System.out.println(account.getGender());
+				System.out.println(account.getAge());
+				
+				//출력날짜를 변경
+				System.out.println(account.getCreateDate());
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+
+				java.util.Date createDate = new java.util.Date(account.getCreateDate().getTime());
+				String sDate = dateFormat.format(createDate);
+				
+				System.out.println(sDate);
+				
+				java.util.Date now = new java.util.Date();
+				java.sql.Date sqlDate = new java.sql.Date(now.getTime());
+				sqlDate = java.sql.Date.valueOf("2022-05-13");
+				
+				System.out.println(sqlDate);
+				
+				
+				break;
+			case "2":			
 				System.out.println("아무것도 입력을 하지 않으면 이전 값을 유지 합니다.");
 				System.out.print("변경 할 패스워드 : ");
 				input = sc.nextLine();
@@ -126,7 +151,7 @@ public class JoinView {
 					System.out.println("정보 수정에 실패하였습니다.");
 				}
 				break;
-			case "2":	
+			case "3":	
 				System.out.print("패스워드 : ");
 				input = sc.nextLine();
 				
@@ -137,7 +162,7 @@ public class JoinView {
 					System.out.println("회원 탈퇴가 이루어지지 않았습니다.패스워드를 확인해주세요.");
 				}
 				break;
-			case "3":
+			case "4":
 				System.out.println(account.getUserid() + "님이  로그아웃하였습니다.");
 				account =null; //로그아웃처리
 				return;
