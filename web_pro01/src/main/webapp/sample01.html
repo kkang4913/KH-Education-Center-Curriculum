@@ -11,8 +11,16 @@
 		<meta http-equiv="refresh" content="5;">
 		<!-- 카카오톡 링크 보냄 예시 
 		<meta name="image" content="http://localhost:8080/img/sample.jpeg"> -->
-		
 		<title>뀨릿 스토어</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css">
+		<link rel="icon" type="image/png" href="img/logo.png">
+		<base href="http://localhost:8080/web01/page1/" target="_self"> <!-- _self현재페이지 / _blank새창으로 -->
+		<style> 
+			body{
+				color: PINK;
+			}
+			
+		</style>
 	</head>
 	<body>
 		<!-- 
@@ -22,5 +30,11 @@
 		 -->
 
 	<h1>나는 뀨릿이라고해 반가워</h1>
+	
+	<!-- 링크 태그(a) 상대경로(./(현재위치를 의미))-->
+	<a href="./sample02.html">페이지 이동 1</a><br>
+	<a href="./sample03.html">페이지 이동 2</a><br>
+	
+	
 	</body>
 </html>
