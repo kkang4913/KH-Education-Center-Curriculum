@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>사용자 입력 폼2</title>
+</head>
+<body>
+	<input form="f1" type="text" name="outside"><br> <!-- id,form 값을 맞추면 된다 -->
+	<form id="f1" action="./run.jsp" method="GET">
+	<fieldset> <!--그룹 묶기 -->
+		<label>아이디</label><input type="text" name="v1" value="초기값 설정 가능"><br>
+		<label>패스워드</label><input type="password" name="v2"  placeholder="패스워드입력" required><br> <!-- 워터마크, 필수 입력 -->
+		<input type="hidden" name="v3" value="value3"><br>
+		<input type="text" name="v4" value="readonly data" readonly><br> <!-- 읽기전용으로 데이터 전송 -->
+		<input type="text" name="v5" value="disabled data" disabled><br> <!-- 데이터전송x 읽기 전용 -->
+		<input type="text" name="v6" minlength="4" maxlength="12" size="24"><br> <!-- 최소,최대 입력, 사이즈-->
+		</fieldset>
+		<hr>
+		<input type="number" name="v7" min="1" max="100" step="2"><br> <!-- 숫자 입력 -->
+		<input type="number" name="v8" min="1" max="100" step=".5"><br> <!-- 숫자 입력(소수점) -->
+		<input type="range" name="v9" min="0" max="100" step="10" oninput="out1.value =this.value">
+		<input id="out1" type="text" size="3" readonly><br>
+		<hr>
+		<input type="date" name ="v10" value="2022-05-23"><br>
+		<input type="time" name ="v11" value="17:39"><br>
+		<input type="month" name ="v12" value="2022-05"><br>
+		<input type="datetime-local" name ="v13" value="2022-05-23T17:39"><br>
+		<hr>
+		<input type="search" name="v14"><br>
+		<input type="url" name="v15"><br>
+		<input type="email" name="v16"><br>
+		<input type="tel" name="v17"><br>
+		<hr>
+		<label for="id_chr1">체크 1</label><input id="id_chr1" type="checkbox" name="chr1" value="a" checked><!-- 중복이 가능 -->
+		<label for="id_chr2">체크 2</label><input id="id_chr2" type="checkbox" name="chr1" value="b">
+		<label for="id_chr3">체크 3</label><input id="id_chr3" type="checkbox" name="chr1" value="c"><br>
+		<label for="id_rdo1">라디오 1</label><input id="id_rdo1" type="radio" name="rdo1" value="a">	<!-- 단일 선택 -->
+		<label for="id_rdo2">라디오 2</label><input id="id_rdo2" type="radio" name="rdo1" value="b">
+		<label for="id_rdo3">라디오 3</label><input id="id_rdo3" type="radio" name="rdo1" value="c" checked>
+		<hr>
+		<input type="button" value="버튼"><input type="submit" value="전송"><input type="reset" value="초기화"><br>
+		<button type ="button">버튼</button><button type ="submit">전송</button><button type ="reset">초기화</button><br>
+		<hr>
+		 <!-- 파일 업로드는 POST, enctype="multipart/form-data"로  변경해야한다. -->
+		<input type="file" name="v18"><br>
+		<input type="file" name="v19" accept="image/png, image/gif" multiple><br>
+		<hr>
+		<input type="text" list="data_list1">
+		<datalist id ="data_list1">
+			<option value="선택1"></option>
+			<option value="선택2"></option>
+			<option value="선택3"></option>
+		</datalist><br>
+		<hr>
+			<select name="v21">
+			<option value="opt1">옵션1</option>
+			<option value="opt2" selected>옵션2</option>
+			<option value="opt3">옵션3</option>
+		</select><br>
+		<hr>
+			<select name="v22" size="8" multiple>
+			<optgroup label="그룹1">
+			<option value="opt1">옵션1</option>
+			<option value="opt2" selected>옵션2</option>
+			<option value="opt3">옵션3</option>
+			</optgroup>
+			<optgroup label="그룹2">
+			<option value="opt1">옵션1</option>
+			<option value="opt2">옵션2</option>
+			<option value="opt3">옵션3</option>
+			</optgroup>
+		</select><br>		
+		<hr>
+		<textarea name= "v23" cols="30" rows="10" style="resize: none;">한 줄 이상의 텍스트 데이터 입력 가능</textarea><br>
+		
+		
+		<button type ="submit">전송</button>
+	</form>
+</body>
+</html>

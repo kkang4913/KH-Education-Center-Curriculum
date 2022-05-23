@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>사용자 입력 폼1</title>
+</head>
+<body>
+	<h1>GET 전송</h1>
+	GET 방식의 경우에는 URL 주소로 노출되어 있다.
+	<form action="./run.jsp" method="GET">
+		<input type="text" name="v1"><br>
+		<input type="text" name="v2"><br>
+		<button type="submit">전송</button>
+	</form>
+	<h1>POST 전송</h1>
+	POST 방식의 경우에는 URL 주소로 노출되어 있지 않다
+	<form action="./run.jsp" method="POST">
+		<input type="text" name="v1"><br>
+		<input type="text" name="v2"><br>
+		<button type="submit">전송</button>
+
+	</form>
+
+</body>
+</html>

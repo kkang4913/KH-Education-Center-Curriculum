@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>네이버 : 회원가입</title>
+</head>
+<body>
+	<center><h1>NAVER</h1></center>
+	<form action="" method="POST">
+		<div>
+			<label><b>아이디</b></label><br>
+			<input type="text" name="userid" size="36" required>
+		</div>
+		<div>
+			<label><b>비밀번호</b></label><br>
+			<input type="password" name="userpw" size="36" required>
+		</div>
+		<div>
+			<label><b>비밀번호 재확인</b></label><br>
+			<input type="password" name="userpw2" size="36" required>
+		</div>	
+		<br>
+		<div>
+			<label><b>이름</b></label><br>
+			<input type="text" name="username" size="36" required>
+		</div>	
+		<div>
+			<label><b>생년월일</b></label><br>
+			<input type="number" name="year" placeholder="년(4자)" min="1900" max="2022">
+			<select name="month" style="width:90px">
+			<option selected>월</option>
+			<option value="opt1">1</option>
+			<option value="opt2">2</option>
+			<option value="opt3">3</option>
+			<option value="opt4">4</option>
+			<option value="opt5">5</option>
+			<option value="opt6">6</option>
+			<option value="opt7">7</option>
+			<option value="opt8">8</option>
+			<option value="opt9">9</option>
+			<option value="opt10">10</option>
+			<option value="opt11">11</option>
+			<option value="opt12">12</option>
+			</select>
+			<input size="2" type="number" name="day" min="1" max="31" placeholder="일" style="width:90px"  required >
+		</div>	
+		<div>
+		<label><b>성별</b></label><br>
+		<select id="gender" name="gender" style="width:280px">
+			<option value="opt0" selected><b>성별</b></option>
+			<option value="opt1">남자</option>
+			<option value="opt2">여자</option>
+			<option value="opt3">선택 안함</option>
+		</select>
+		</div>
+		<div>
+			<label><b>본인 확인 이메일</b><small>(선택)</small></label><br>
+			<input id="em" type="email" size="36" required  ><br>
+		</div>
+		<div>
+			<label for="tel"><b>휴대 전화</b></label><br>
+			<select id="tel" name="month" style="width:280px">
+			<option value="opt0" selected>대한민국 +82</option>
+			<option value="opt1">1</option>
+			<option value="opt2">2</option>
+			<option value="opt11">11</option>
+			<option value="opt12">12</option>
+			</select><br>
+			<input type="tel" name="tel"   maxlength="16" placeholder="전화번호 입력" size="36" required>
+			<button type ="button">인증번호 받기</button><br>
+			<input type="tel" name="num"   maxlength="4" placeholder="인증번호 입력"  size="36" required disabled><br>
+			<button type ="submit">가입하기</button><br>
+		</div>
+	</form>
+	
+	
+</body>
+</html>
