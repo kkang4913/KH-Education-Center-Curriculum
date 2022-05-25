@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.HashMap;
@@ -22,7 +23,8 @@ public class DBConn {
 	
 	private String url_address;
 	private Connection conn;
-	private Statement stat;
+	//private Statement stat;
+	private PreparedStatement pstat;
 	
 	public DBConn(File config) throws Exception {
 			Map<String, String> map = new HashMap<String, String>();
@@ -61,26 +63,35 @@ public class DBConn {
 		conn = DriverManager.getConnection(BASE_URL + url_address, username, password);
 		
 		//3. Statement 생성
-		stat = conn.createStatement();
+		//stat = conn.createStatement();
+		
+	}
+	//필요 : 
+	public PreparedStatement getPstat(String query) throws Exception {
+		pstat = conn.prepareStatement(query);
+		return pstat;
 	}
 	
+	
+	
+	//PreparedStatement : SQL구문작성 쿼리로 구동이 되기 때문에 값을 넣어줄 필요가 없다.
 	//SQL 질의문 전송 및 반환
-	public ResultSet sendSelectQuery(String query) throws Exception {
-		return this.stat.executeQuery(query);
+	public ResultSet sendSelectQuery() throws Exception {
+		return this.pstat.executeQuery();
 	}
-	public int sendInsertQuery(String query) throws Exception {
-		return this.stat.executeUpdate(query);
+	public int sendInsertQuery( ) throws Exception {
+		return this.pstat.executeUpdate();
 	}
-	public int sendUpdateQuery(String query) throws Exception {
-		return this.stat.executeUpdate(query);
+	public int sendUpdateQuery() throws Exception {
+		return this.pstat.executeUpdate();
 	}
-	public int sendDeletetQuery(String query) throws Exception {
-		return this.stat.executeUpdate(query);
+	public int sendDeletetQuery() throws Exception {
+		return this.pstat.executeUpdate();
 	}
 	
 	//객체반환
 	public void close() throws Exception {
-		this.stat.close();
+		this.pstat.close();
 		this.conn.close();
 	}
 
