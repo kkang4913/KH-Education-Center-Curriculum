@@ -56,8 +56,12 @@ public static void main(String[] args) {
 			break;
 		case '2':
 			System.out.println("벌칙 셋팅 메뉴로 이동합니다.");
+			
+			System.out.println("==================11111");
 			SettingMenu sMenu = new SettingMenu();
+			System.out.println("==================22222");
 			sMenu.show();
+			System.out.println("==================333333");
 			break;
 		case '3':
 			System.out.println("게임을 종료합니다.");
