@@ -11,6 +11,8 @@ public class SettingMenu {
 	PenaltyDatabase pDB = new PenaltyDatabase();
 
 	public void show() {
+		System.out.println("===================4444");
+		
 		String menu = "";
 
 		menu += "<<< Penalty Setting >>>\n";
