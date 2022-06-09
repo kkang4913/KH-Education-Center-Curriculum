@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+.notice{
+	border: 1px solid black;
+}
+
+.notice th, .notice td{
+		border: 1px solid black;
+}
+
+.notice > thead,tfoot{
+	background-color: coral;
+	color: white;
+}
+.notice tbody{
+	background-color: rgb(255,255,224);
+}
+
+.notice thead > tr > th:first-of-type {
+	width: 40px;
+}
+.notice thead > tr > th:nth-of-type(2) {
+	width: 430px;
+}
+.notice thead > tr > th:nth-of-type(3) {
+	width: 100px;
+}
+.notice thead > tr > th:nth-of-type(4) {
+	width: 100px;
+}
+.notice thead > tr > th:last-of-type {
+	width: 50px;
+}
+.notice tbody > tr > td:nth-of-type(2) {
+	width: 400px;
+}
+.notice tbody > tr > td{
+	font-size: small;
+}
+
+.noticeline{
+	width: 770px;
+}
+.title-size{
+	width: 280px;
+}
+.center table tr:last-child td {
+	text-align: center;
+}
+div{
+	padding: 0.45rem;
+}
