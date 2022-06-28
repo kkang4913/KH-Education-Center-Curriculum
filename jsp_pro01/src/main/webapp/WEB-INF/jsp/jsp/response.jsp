@@ -50,8 +50,5 @@
 	<%
 		//response.sendRedirect("/jsp01/main");
 	%>
-	<p>
-	
-	</p>
 </body>
 </html>

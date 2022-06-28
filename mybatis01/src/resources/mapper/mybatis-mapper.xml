@@ -134,4 +134,10 @@
 		INSERT INTO T_MYBATIS VALUES (#{seq}, #{name}, #{date})
 	</insert>
 	
+	<insert id ="insertGetSeq" useGeneratedKeys="true" parameterType="datavo"
+			keyProperty="id" keyColumn="ID">
+		INSERT INTO T_MYBATIS VALUES (SEQ_MYBATIS.NEXTVAL, #{name}, #{today})
+	</insert>
+	
+	
 </mapper>

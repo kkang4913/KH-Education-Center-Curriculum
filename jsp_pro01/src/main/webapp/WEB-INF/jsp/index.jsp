@@ -13,6 +13,7 @@
 		<li><a href ="./jsp/script_tag">JSP - Script Tag</a></li>
 		<li><a href ="./jsp/request">JSP - request</a></li>
 		<li><a href="./jsp/response">Jsp - response</a></li>
+		<li><a href="./jsp/mvc">Jsp/Servlet - MVC Model</a></li>
 	</ul>
 </body>
 </html>
