@@ -35,4 +35,16 @@ public class DeptService {
 		DeptDTO data =dao.searchDeptId(id);
 		return data;
 	} //내부 전용 함수를 만들어 사용 가능
+
+	public int addDept(DeptDTO data) {
+		DeptDTO deptData =_getDeptId(data.getDeptId());
+		
+		if(deptData == null) {
+			boolean isSave = dao.insertDept(data);
+			if (isSave) {
+				return 1; //성공
+			}
+		}
+			return -1; //실패
+	}
 }
