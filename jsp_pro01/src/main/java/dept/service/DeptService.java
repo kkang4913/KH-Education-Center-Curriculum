@@ -15,7 +15,24 @@ public class DeptService {
 	
 	public List<DeptDTO> getAll() {
 		List<DeptDTO> datas = dao.searchAll();
-		
 		return datas;
 	}
+	
+	public DeptDTO getDeptId(String id) {
+		boolean isNumber = id.matches("\\d+");
+		if (isNumber) {
+			int deptId = Integer.parseInt(id);
+			return _getDeptId(deptId);
+		}
+		return null;
+	}
+	
+	public DeptDTO getDept(int id) {
+		return _getDeptId(id);
+	}
+	
+	private DeptDTO _getDeptId(int id) {
+		DeptDTO data =dao.searchDeptId(id);
+		return data;
+	} //내부 전용 함수를 만들어 사용 가능
 }

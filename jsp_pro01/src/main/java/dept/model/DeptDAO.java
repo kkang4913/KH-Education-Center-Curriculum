@@ -19,4 +19,9 @@ public class DeptDAO {
 		//System.out.println(datas); //조회 확인
 		return datas;
 	}
+	
+	public DeptDTO searchDeptId(int id) {
+		DeptDTO data = session.selectOne("deptMapper.deptSelectId",id);
+		return data;
+	}
 }

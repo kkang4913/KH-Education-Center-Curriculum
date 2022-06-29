@@ -14,6 +14,8 @@
 		<li><a href ="./jsp/request">JSP - request</a></li>
 		<li><a href="./jsp/response">Jsp - response</a></li>
 		<li><a href="./jsp/mvc">Jsp/Servlet - MVC Model</a></li>
+		<li><a href="./depts">부서 조회</a></li>
+		<li><a href="./locs">지역 조회</a></li>
 	</ul>
 </body>
 </html>
