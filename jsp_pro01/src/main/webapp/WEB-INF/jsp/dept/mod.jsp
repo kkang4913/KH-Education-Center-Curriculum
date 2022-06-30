@@ -5,18 +5,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>부서 추가</title>
+<title>부서 정보 수정</title>
 </head>
 <body>
-	<h1>부서 추가 화면</h1>
+	<h1>부서 정보 수정 화면</h1>
 	<%
 		String deptId ="", deptName ="", mngId ="", locId="";
-		if(request.getAttribute("error") !=null){
 			DeptDTO data = (DeptDTO) request.getAttribute("data");
 			deptId = String.valueOf(data.getDeptId());
 			deptName = data.getDeptName();
 			mngId = String.valueOf(data.getMngId());
 			locId = String.valueOf(data.getLocId());
+		
+			if(request.getAttribute("error") !=null){
 	%>
 			<script type="text/javascript" >
 				alert("<%=request.getAttribute("errorMsg")%>");
@@ -24,9 +25,9 @@
 	<%
 		}
 	%>
-	<form action="./add" method="post">
+	<form action="./mod" method="post">
 		<div>
-			<input type="text" name="deptId" value="<%=deptId%>" placeholder="부서 ID">
+			<input type="hidden" name="deptId" value="<%=deptId%>" readonly>
 		</div>	
 		<div>
 			<input type="text" name="deptName" value="<%=deptName%>" placeholder="부서명">
