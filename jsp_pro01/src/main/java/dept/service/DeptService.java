@@ -1,5 +1,7 @@
 package dept.service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import dept.model.DeptDAO;
@@ -16,6 +18,33 @@ public class DeptService {
 		dao.close();
 		return datas;
 	}
+	
+	public List<DeptDTO> getPage(int pageNumber){
+		int start = (pageNumber -1) *10 +1;
+		int end = start +9;
+		
+		dao = new DeptDAO();
+		List<DeptDTO> datas = dao.searchPage(start, end);
+		dao.close();
+		
+		return datas;
+	}
+	
+	public List<Integer> getPageNumberList(){
+		dao = new DeptDAO();
+		int rowCount = dao.rowCount();
+		dao.close();
+		// 여기에 페이지 번호를 가지는 리스트를 만든다.
+		List<Integer> pageList = new ArrayList<Integer>();
+		int pageNum  = (rowCount -1) /10;
+		for(int n =0; n<=pageNum; n++) {
+			pageList.add(n + 1);
+		}
+		return pageList;
+		
+	}
+	
+	
 	
 	public DeptDTO getDeptId(String id) {
 		boolean isNumber = id.matches("\\d+");
@@ -105,6 +134,26 @@ public class DeptService {
 		default:
 			dao.close();
 	}
+		return status;
+	}
+
+	public DEPT_SERVICE_STATUS deleteDept(String id) {
+		DEPT_SERVICE_STATUS status = DEPT_SERVICE_STATUS.SUCCESS;
+		
+		dao = new DeptDAO();
+		
+		if(_getDeptId(Integer.parseInt(id)) == null) {
+			status = DEPT_SERVICE_STATUS.DEPT_ID_NOT_EXISTS;
+		}
+		
+		boolean result = dao.deleteDept(Integer.parseInt(id));
+		if(result) {
+			dao.commit();
+		} else {
+			status = DEPT_SERVICE_STATUS.FAILED;
+			dao.rollback();
+		}
+		dao.close();
 		return status;
 	}
 }

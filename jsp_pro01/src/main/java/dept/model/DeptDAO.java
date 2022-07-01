@@ -1,6 +1,8 @@
 package dept.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -19,6 +21,20 @@ public class DeptDAO {
 		//System.out.println(datas); //조회 확인
 		return datas;
 	}
+	
+	public List<DeptDTO> searchPage(int start, int end){
+		Map<String, Integer> page = new HashMap<String, Integer>();
+		page.put("start", start);
+		page.put("end", end);
+		List<DeptDTO> datas = session.selectList("deptMapper.deptSelectPage", page);
+		return datas;
+	}
+	
+	public int rowCount() {
+		int count = session.selectOne("deptMapper.deptRowConut");
+		return  count;
+	}
+	
 	
 	public DeptDTO searchDeptId(int id) {
 		DeptDTO data = session.selectOne("deptMapper.deptSelectId",id);
@@ -57,6 +73,14 @@ public class DeptDAO {
 		}
 		return false;
 	}
+	public boolean deleteDept(int id) {
+		int result =session.delete("deptMapper.deptDelete",id);
+		
+		if (result ==1) {
+			return true;
+		}
+		return false;
+	}
 	
 	public void commit() {
 		session.commit();
@@ -69,6 +93,7 @@ public class DeptDAO {
 	public void close() {
 		session.close();
 	}
+
 
 	
 }

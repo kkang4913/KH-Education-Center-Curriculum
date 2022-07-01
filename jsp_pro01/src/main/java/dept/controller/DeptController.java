@@ -29,7 +29,9 @@ public class DeptController extends HttpServlet {
 		List<DeptDTO> datas =null;
 		
 		if(search == null) {
-			datas = service.getAll();
+			int page = Integer.parseInt(request.getParameter("page"));
+			datas = service.getPage(page);
+			request.setAttribute("pageList", service.getPageNumberList());
 		}else {								//matches: 정규표현식 사용하는 방법
 			//boolean isNumber = search.matches("\\d+"); //정규표현식 사용
 			//if(isNumber) {

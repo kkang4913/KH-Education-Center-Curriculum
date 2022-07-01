@@ -57,6 +57,7 @@
 					<td><a href="./locs?search=<%=data.getLocId() %>"><%=data.getLocId() %></a></td>
 					<td>
 						<button type="button" onclick="location.href='./depts/mod?id=<%=data.getDeptId()%>'">수정</button>
+						<button type="button" onclick="location.href='./depts/del?id=<%=data.getDeptId()%>'">삭제</button>
 					</td>
 				</tr>
 		<%
@@ -70,5 +71,17 @@
 			}
 		%>
 	</table>
+	<ul>
+	<%
+		if(request.getAttribute("pageList") !=null){
+			List<Integer> pageList = (List<Integer>) request.getAttribute("pageList");
+			for(Integer num : pageList){
+	%>			
+			<li><<a href="./dept?page=<%=num %>"><%=num %></a></li>		
+	<%			
+			}
+		}
+	%>
+	</ul>
 </body>
 </html>
