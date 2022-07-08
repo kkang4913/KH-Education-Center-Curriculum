@@ -1,5 +1,6 @@
 package dept.model;
 
+
 public class DeptDTO {
 
 	private int deptId;
@@ -7,6 +8,9 @@ public class DeptDTO {
 	private int mngId;
 	private int locId;
 	
+	
+	
+
 	public int getDeptId() {
 		return deptId;
 	}

@@ -8,6 +8,7 @@
 <title>부서 정보 수정</title>
 </head>
 <body>
+
 	<h1>부서 정보 수정 화면</h1>
 	<%
 		String deptId ="", deptName ="", mngId ="", locId="";

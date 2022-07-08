@@ -23,6 +23,7 @@ public class LocsController extends HttpServlet {
 		//System.out.println("Controller 동작 확인");
 		String search = request.getParameter("search");
 		
+		request.setAttribute("menuLocation", "locs");
 		List<LocsDTO> datas =null;
 		
 		if(search == null) {

@@ -4,9 +4,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/jsp01/static/css/main.css">
+
 <title>JSP/Servlet - MVC Model</title> <!-- 전체적인 웹어플리케이션 환경 구성을 위한 구조 -->
 </head>
 <body>
+<header class = "p-1 mb-1 border-bottom">
+	<div class = container>
+<h1><a class="top-nav" href="../main">Welcome Jsp/Servlet</a></h1>
+	<div class= "flex"> 
+	<ul class = nav>
+		<li><a class = nav href ="./script_tag">JSP - Script Tag</a></li>
+		<li><a class = nav href ="./request">JSP - request</a></li>
+		<li><a class = nav href="./response">Jsp - response</a></li>
+		<li><a class = nav href="./mvc">Jsp/Servlet - MVC Model</a></li>
+		<li><a class = nav href="../depts">부서 조회</a></li>
+		<li><a class = nav href="../locs">지역 조회</a></li>
+	</ul>
+	<form action="" class="col-auto">
+		<input type = "text" class="form-controller">
+			<button type="submit" name="search" class="btn-controller">조회</button>
+	</form>
+	</div>
+	</div>
+	</header>
 	<h1>JSP/Servlet - MVC Model</h1>
 	<h2>Model 1</h2> 
 	<p>
