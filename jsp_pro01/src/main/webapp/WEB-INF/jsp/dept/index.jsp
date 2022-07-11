@@ -46,25 +46,39 @@
 				 		<div class="input-form form-right">
 				 			<input class="input-text" type="text" name="search"> <!--name에 deptId가 들어간다  -->
 				 			<button class="btn btn-outline" type="submit">조회</button>
+				 			<select class="select-form" onchange="location.href='./depts?pgc=' + this.value">
+					 				<option value="5" ${pgc == 5 ? 'selected' : ''}>5개</option>
+					 				<option value="10" ${pgc == 10 ? 'selected' : ''} >10개</option>
+					 				<option value="15" ${pgc == 15 ? 'selected' : ''} >15개</option>
+					 				<option value="20" ${pgc == 20 ? 'selected' : ''} >20개</option>
+				 			</select>
 				 		</div>
 				</form>
 		</div>
 	<table class="table wide vertical-hidden hover">
 		<colgroup>
-			<col class="col-60">
-			<col class="col-auto">
-			<col class="col-60">
-			<col class="col-60">
-			<col class="col-120">
+				<col class="col-120">
+				<col class="col-auto">
+				<col class="col-120">
+				<col class="col-120">
+				<col class="col-120">
 		</colgroup>
 		<thead>
-			<tr class ="">
-				<th>DeptId</th>
-				<th>DeptName</th>
-				<th>MngId</th>
-				<th>LocId</th>
-				<th class="border-hidden-right"></th>
-			</tr>
+				<tr>
+					<th class="${sort == 'deptId' ? 'sort-desc' : ''}"
+					onclick="location.href='./depts?page=${page}&sort=deptId'">DeptId
+					</th>
+					<th class="${sort == 'deptName' ? 'sort-desc' : ''}"
+					onclick="location.href='./depts?page=${page}&sort=deptName'">DeptName
+					</th>
+					<th class="${sort == 'mngId' ? 'sort-desc' : ''}"
+					onclick="location.href='./depts?page=${page}&sort=mngId'">MngId
+					</th>
+					<th class="${sort == 'locId' ? 'sort-desc' : ''}"
+					onclick="location.href='./depts?page=${page}&sort=locId'">LocId
+					</th>
+					<th class="border-hidden-right"></th>
+				</tr>
 		</thead>
 		<tbody>
 		<c:if test="${not empty datas}">
