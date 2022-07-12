@@ -12,7 +12,8 @@
 }
 
 .input-form.wide .input-label,
-.input-form.wide .input-text {
+.input-form.wide .input-text,
+.input-form.wide .select-form {
 	display: block;
 	margin: 0.4rem 0;
 	width: 100%;
@@ -25,6 +26,9 @@
 	outline-style: none;
 	border-radius: 4px;
 }
+select > .select-form{
+	width: 100%;
+}
 
 .input-text:hover,
 .input-text:focus {
@@ -34,6 +38,7 @@
 .input-label-error {
 	color: #FF0063
 }
+
 
 .btn {
 	padding: 0.4rem 0.8rem;
