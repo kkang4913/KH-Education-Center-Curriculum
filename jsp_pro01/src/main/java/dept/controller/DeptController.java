@@ -22,12 +22,20 @@ public class DeptController extends HttpServlet {
 	private DeptService service = new DeptService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session =  request.getSession();
+		
+		if(session.getAttribute("loginData") == null) {
+			response.sendRedirect(request.getContextPath() + "/login");
+			return;
+		}
+		
 		String search = request.getParameter("search"); //리퀘스트는 전부 문자열
 		String page = request.getParameter("page");
 		String sort= "deptId";
 		int count = 5;
 		
-		HttpSession session =  request.getSession();
+		
+		
 		if(session.getAttribute("pgc") != null) {
 		     count =Integer.parseInt(session.getAttribute("pgc").toString());
 		}

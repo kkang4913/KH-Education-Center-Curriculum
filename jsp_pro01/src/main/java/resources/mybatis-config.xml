@@ -9,9 +9,10 @@
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	<typeAliases>
-		<typeAlias type="dept.model.DeptDTO" alias="deptDto"/>
-		<typeAlias type="locs.model.LocsDTO" alias="locsDto"/>
-		<typeAlias type="emp.model.EmpDTO" alias="empDto"/>
+		<typeAlias type="dept.model.DeptDTO" alias="deptDto" />
+		<typeAlias type="locs.model.LocsDTO" alias="locsDto" />
+		<typeAlias type="emps.model.EmpsDTO" alias="empsDto" />
+		<typeAlias type="emps.model.EmpsDetailDTO" alias="empsDetailDto" />
 	</typeAliases>
   	<environments default="development">
     	<environment id="development">

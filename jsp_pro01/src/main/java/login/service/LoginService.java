@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
-import emp.model.EmpDTO;
+import emps.model.EmpsDTO;
 import login.model.LoginDAO;
 
 public class LoginService {
@@ -24,7 +24,7 @@ public class LoginService {
 		}
 		
 		LoginDAO dao = new LoginDAO();
-		EmpDTO data = dao.selectLogin(mapData);
+		EmpsDTO data = dao.selectLogin(mapData);
 		dao.close();
 		
 		if(data == null) {

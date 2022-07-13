@@ -1,19 +1,20 @@
 package login.model;
 
+
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.conn.db.DBConn;
 
-import emp.model.EmpDTO;
+import emps.model.EmpsDTO;
 
 public class LoginDAO {
 
 	private SqlSession session = DBConn.getSqlSession();
 	
-	public EmpDTO selectLogin(Map<String,Object> mapData) {
-		EmpDTO data = session.selectOne("loginMapper.selectLogin",mapData);
+	public EmpsDTO selectLogin(Map<String,Object> mapData) {
+		EmpsDTO data = session.selectOne("loginMapper.selectLogin",mapData);
 		return data;
 		//map 컬렉션을 활용하면 여러 데이터를 전달 가능하다.
 	}

@@ -1,6 +1,6 @@
-package emp.model;
+package emps.model;
 
-public class EmpDTO {
+public class EmpsDTO {
 	private int empId;
 	private String empName;
 	private String email;

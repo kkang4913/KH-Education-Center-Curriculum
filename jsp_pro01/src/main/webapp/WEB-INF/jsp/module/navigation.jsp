@@ -31,6 +31,7 @@
 						</li>
 					</ul>
 				</li>
+				<c:if test="${not empty sessionScope.loginData}">
 				<li class="nav-item <%=menuLocation.equals("emps") ? "active" : "" %>">
 					<a class = "nav-link"  href="./emps">직원</a>
 				</li>
@@ -40,7 +41,12 @@
 				<li class="nav-item <%=menuLocation.equals("locs") ? "active" : "" %>" >
 					<a class = "nav-link"  href="./locs">지역</a>
 				</li>
+				</c:if>
 				<c:if test="${not empty sessionScope.loginData}">
+					<li class="nav-item">
+						<c:url var="myInfoUrl" value="/myinfo" />
+						<a class="nav-link" href="${myInfoUrl}">내정보</a>
+					</li>
 					<li class="nav-item">
 						<c:url var="logoutUrl" value="/logout" />
 						<a class="nav-link" href="${logoutUrl}">로그아웃</a>
