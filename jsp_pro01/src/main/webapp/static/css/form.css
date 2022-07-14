@@ -26,6 +26,11 @@
 	width: 360px;
 	height: 360px;
 }
+.image-form .image-480{
+	display: inline-block;
+	width: 280px;
+	height: 400px;
+}
 
 .input-form.wide .input-label,
 .input-form.wide .input-text,

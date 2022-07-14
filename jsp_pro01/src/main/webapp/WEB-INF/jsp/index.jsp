@@ -9,17 +9,48 @@
 <head>
 <meta charset="UTF-8">
 		<title>Welcome Jsp/Servlet</title>
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/default.css">
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/form.css">
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/navigation.css">
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/paging.css">
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/required.css">
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/table.css">
-		<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/required.js"></script>
+		<%@ include file ="./module/head.jsp" %>
 </head>
+<script type="text/javascript">
+	function sendAjax() {
+		$.ajax({
+			type: "get",  			//전송 타입 (Post,Get)
+			url: "/ajax/test",   	//데이터를 처리를 담당하는 서버 주소
+			data: {
+			 	x:"Hello",			//파라메터명 : 파라메터값
+			 	y: 1234
+													
+			},  					//서버에 전송할 데이터
+			dataType: "json",		//서버의 응답 데이터 형식(xml, text, json, ....)
+			success: function(data, status) {
+									//서버로 부터의 응답 코드가 200번일때 동작할 함수 작성
+									//data : 서버로 부터 받은 데이터 정보를 가지고 있는 객체
+									//status: 응답 코드
+				console.log("success: " + data);
+				console.log("success: " + data.attributeName);
+				console.log("success: " + status);
+			},	
+			error: function(data, status) {
+									//서버로 부터의 응답 코드가 200번이 아닐 시 동작할 함수 작성
+									//data : 서버로 부터 받은 데이터 정보를 가지고 있는 객체
+									//status: 응답 코드
+				console.log("error: " + data);
+				console.log("error: " + status);
+			},	
+			complete: function(data, status){
+									//통신 성공 여부와 관계 없이 완료 후 동작할 함수 작성
+				console.log("complete: " + data);
+				console.log("complete: " + status);					
+			}	
+		});
+	}
+</script>
 <body>
 	<%@ include file="/WEB-INF/jsp/module/navigation.jsp" %>
 	<section class="container">
+		<diV>
+			<button type="button" onclick="sendAjax();">비동기 통신</button>
+		</diV>
 		<c:url var="loginUrl" value="/login"/>
 		<form class="small-form" action="${loginUrl}" method="post">
 			<div class="input-form wide">
