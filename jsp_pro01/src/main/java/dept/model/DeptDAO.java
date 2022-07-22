@@ -8,7 +8,9 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.conn.db.DBConn;
 
-public class DeptDAO {
+import common.model.AbstractDAO;
+
+public class DeptDAO{
 	
 	
 	private SqlSession session;
@@ -100,6 +102,7 @@ public class DeptDAO {
 		}
 		return false;
 	}
+	
 	
 	public void commit() {
 		session.commit();

@@ -22,4 +22,27 @@
 			 FROM LOCATIONS
 			 WHERE LOCATION_ID = #{id}
 	</select>
+	<select id="locsRowCount" resultType="_int">
+		SELECT COUNT(*) FROM LOCATIONS
+	</select>
+	<select id="selectPage" parameterType="map" resultType="locsDto">
+		SELECT *
+		  FROM (SELECT ROWNUM AS RN
+		             , locId
+		             , stAddr
+		             , postal
+		             , city
+		             , state
+		             , ctyId
+		          FROM (SELECT LOCATION_ID AS locId
+				             , STREET_ADDRESS AS stAddr
+				             , POSTAL_CODE AS postal
+				             , CITY AS city
+				             , STATE_PROVINCE AS state
+				             , COUNTRY_ID AS ctyId
+				          FROM LOCATIONS
+				       )
+		       )
+		 WHERE RN BETWEEN #{start} AND #{end}
+	 </select>
 </mapper>

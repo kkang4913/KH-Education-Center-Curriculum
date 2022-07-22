@@ -69,4 +69,31 @@ public class EmpsDAO {
 		session.close();
 	}
 
+	public boolean insertEmp(EmpsDTO empsData) {
+		String mapId = String.format(mapper, "insertEmp");
+		int result = session.insert(mapId, empsData);
+		if(result == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	public EmpsDTO selectId(int id) {
+		String mapId = String.format(mapper, "selectId");
+		EmpsDTO data = session.selectOne(mapId,id);
+		return data;
+	}
+	public Map<String, Integer> checkSalaryRange(String id){
+		String mapId = String.format(mapper, "checkSalaryRange");
+		Map<String, Integer> data =session.selectOne(mapId,id);
+		return data;
+	}
+
+	public boolean deleteId(int id) {
+		String mapId = String.format(mapper, "deleteId");
+		int result = session.delete(mapId,id);
+		return result == 1 ? true : false;
+	}
+	
+
 }

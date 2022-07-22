@@ -21,6 +21,10 @@ public class EmpsDTO {
 	public void setEmpId(int empId) {
 		this.empId = empId;
 	}
+	public void setEmpId(String empId) {
+		this.empId = Integer.parseInt(empId);
+	}
+	
 	public String getEmpName() {
 		return empName;
 	}
@@ -57,7 +61,9 @@ public class EmpsDTO {
 	public void setDeptId(int deptId) {
 		this.deptId = deptId;
 	}
-	
+	public void setDeptId(String deptId) {
+		this.deptId = Integer.parseInt(deptId);
+	}
 	
 	
 }

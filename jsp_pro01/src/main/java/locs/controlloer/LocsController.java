@@ -9,7 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import emps.model.EmpsDTO;
 import locs.model.LocsDTO;
 import locs.service.LocsService;
 
@@ -22,8 +24,26 @@ public class LocsController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//System.out.println("Controller 동작 확인");
 		String search = request.getParameter("search");
+		String page = request.getParameter("page");
+		int count = 5;
 		
-		request.setAttribute("menuLocation", "locs");
+		if(page == null) {
+			page = "1";
+		}
+		HttpSession session = request.getSession();
+		if(session.getAttribute("pgc") != null) {
+			count = Integer.parseInt(session.getAttribute("pgc").toString());
+		}
+		
+		if(request.getParameter("pgc") != null) {
+			count = Integer.parseInt(request.getParameter("pgc"));
+		}
+		
+		request.setAttribute("menuLocation", "emps");
+		session.setAttribute("pgc", count);
+		
+		
+		
 		List<LocsDTO> datas =null;
 		
 		if(search == null) {
@@ -38,9 +58,12 @@ public class LocsController extends HttpServlet {
 				datas.add(data);
 			}
 		} 
-		
+		datas = service.getPage(Integer.parseInt(page), count);
+		List<Integer> pageList = service.getPageNumberList(count);
 
+		request.setAttribute("pageList", pageList);
 		request.setAttribute("datas", datas);
+		request.setAttribute("page", page);
 		
 		String view ="/WEB-INF/jsp/locs/index.jsp";
 		request.getRequestDispatcher(view).forward(request, response);

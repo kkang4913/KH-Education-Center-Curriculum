@@ -10,7 +10,6 @@
 	}
 
 %>
-    
     <header>
 		<nav class="top-nav center">
 			<ul class = "nav">
