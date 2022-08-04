@@ -17,6 +17,8 @@ import javax.servlet.http.HttpSession;
 
 import board.model.EmpBoardDTO;
 import board.service.EmpBoardService;
+import comment.model.CommentDTO;
+import comment.service.CommentService;
 import emps.model.EmpsDTO;
 import emps.service.EmpsService;
 
@@ -38,14 +40,16 @@ public class EmpBoardDetailController extends HttpServlet {
 			HttpSession session = request.getSession();
 			
 			service.incViewCnt(session,data);
-
-				
-			
 			
 			EmpsDTO empData = empsService.getId("" + data.getEmpId());
+			CommentService commentService = new CommentService();
+			
+			List<CommentDTO> commentDatas = commentService.getDatas(data.getId());
+		
 			
 			request.setAttribute("data", data);
 			request.setAttribute("empData", empData);
+			request.setAttribute("commentDatas", commentDatas);
 			
 			RequestDispatcher rd = request.getRequestDispatcher(view);
 			rd.forward(request, response);

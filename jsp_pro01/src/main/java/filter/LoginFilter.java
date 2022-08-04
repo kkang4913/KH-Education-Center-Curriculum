@@ -18,7 +18,8 @@ import javax.servlet.http.HttpSession;
 				"/myinfo","/depts", "/locs",
 				"/dept/*", "/locs/*",
 				"/emps", "/emps/*",
-				"/board", "/board/*"
+				"/board", "/board/*",
+				"/comment", "/comment/*"
 		}
 		)
 public class LoginFilter extends HttpFilter implements Filter {
