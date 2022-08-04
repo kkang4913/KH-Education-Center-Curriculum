@@ -8,34 +8,33 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import board.model.EmpBoardDTO;
 import board.service.EmpBoardService;
+import emps.model.EmpsDTO;
 
 @WebServlet("/board/add")
 public class EmpBoardAddController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     
+	
 	private EmpBoardService service = new EmpBoardService();
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String view ="/WEB-INF/jsp/board/add.jsp";
+		String view = "/WEB-INF/jsp/board/add.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
-		
-	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		
 		
 		EmpBoardDTO data = new EmpBoardDTO();
 		data.setTitle(title);
 		data.setContent(content);
-		// data.setEmpId(((EmpsDTO)session.getAttribute("loginData")).getEmpId());
-		data.setEmpId(100);
+		data.setEmpId(((EmpsDTO)session.getAttribute("loginData")).getEmpId());
 		
 		int boardId = service.add(data);
 		

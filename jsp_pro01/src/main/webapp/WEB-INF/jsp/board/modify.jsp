@@ -7,7 +7,7 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
-	<title>게시글 등록</title>
+	<title>게시글 수정</title>
 	<link rel="stylesheet" type="text/css" href="/static/bs5/css/bootstrap.min.css">
 	<script type="text/javascript" src="/static/bs5/js/bootstrap.min.js"></script>
 </head>
@@ -27,13 +27,15 @@
 	<header></header>
 	<section class="container">
 		<div class="mt-3">
-			<form action="/board/add" method="post">
+			<c:url var="boardModifyUrl" value="/board/modify"></c:url>
+			<form action="${boardModifyUrl}" method="post">
+				<input type="hidden" name="id" value="${data.id}">
 				<div class="mb-3">
-					<input class="form-control" type="text" name="title" placeholder="제목을 입력하세요.">
+					<input class="form-control" type="text" name="title" value="${data.title}" placeholder="제목을 입력하세요.">
 				</div>
 				<div class="mb-3">
 					<textarea class="form-control" name="content" rows="8"
-						placeholder="내용을 입력하세요."></textarea>
+						placeholder="내용을 입력하세요.">${data.content}</textarea>
 				</div>
 				<div class="mb-3 text-end">
 					<button class="btn btn-primary" type="button" onclick="formCheck(this.form);">저장</button>

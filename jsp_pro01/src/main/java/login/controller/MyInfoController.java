@@ -37,7 +37,7 @@ public class MyInfoController extends HttpServlet {
 			
 			request.setAttribute("empsDetailData", empsDetailData);
 			
-			String imagePath = empsService.getProfleImagePath(request, "/static/img/emp/", empsData);
+			String imagePath = empsService.getProfileImagePath(request, "/static/img/emp/", empsData);
 			request.setAttribute("imagePath", imagePath);
 			
 			rd = request.getRequestDispatcher(view);

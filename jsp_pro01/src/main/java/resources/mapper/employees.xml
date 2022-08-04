@@ -80,6 +80,9 @@
 		    ON E.JOB_ID = J.JOB_ID
 		  JOIN DEPARTMENTS D
 		    ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+		  <if test="deptId != 10">
+			 WHERE E.DEPARTMENT_ID = #{id}
+		  </if>  
 	</select>
 	<select id="selectEmpDetail" parameterType="_int" resultType="empsDetailDto">
 			SELECT EMPLOYEE_ID AS empId

@@ -20,7 +20,7 @@
 	<%@ include file="/WEB-INF/jsp/module/navigation.jsp" %>
 	<section class="container">
 		<div>
-			<form action="./emps" method="get">
+			<form action="./depts" method="get">
 				<div class="input-form form-left">
 					<button class="btn btn-outline" type="button" onclick="location.href='./emps/add'">추가</button>
 				</div>
@@ -66,9 +66,9 @@
 			<tbody>
 				<c:if test="${not empty datas}">
 					<c:forEach items="${datas}" var="data">
-					<c:url var="empDetailUrl" value="/emps/detail">
-						<c:param name="id" value="${data.empId}"/>					
-					</c:url>
+						<c:url var="empDetailUrl" value="/emps/detail">
+							<c:param name="id" value="${data.empId}" />
+						</c:url>
 						<tr onclick="location.href='${empDetailUrl}'">
 							<td>${data.empId}</td>
 							<td>${data.empName}</td>

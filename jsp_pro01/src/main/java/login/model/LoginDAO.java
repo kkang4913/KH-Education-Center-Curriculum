@@ -1,6 +1,7 @@
 package login.model;
 
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -27,6 +28,11 @@ public class LoginDAO {
 	}
 	public void close() {
 		session.close();
+	}
+
+	public List<PermDTO> selectPerm(int id) {
+		List<PermDTO> data = session.selectList("loginMapper.selectPerm",id);
+		return data;
 	}
 
 }

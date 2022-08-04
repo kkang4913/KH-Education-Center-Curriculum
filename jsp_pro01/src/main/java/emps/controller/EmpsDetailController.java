@@ -16,29 +16,27 @@ import emps.service.EmpsService;
 @WebServlet("/emps/detail")
 public class EmpsDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private String view ="/WEB-INF/jsp/emps/detail.jsp";
-       
-
+	private String view = "/WEB-INF/jsp/emps/detail.jsp";
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		
 		EmpsService empsService = new EmpsService();
 		EmpsDTO empsData = empsService.getId(id);
-		EmpsDetailDTO empsDetailDTO = empsService.getEmpDetail(empsData.getEmpId());
+		EmpsDetailDTO empsDetailData = empsService.getEmpDetail(empsData.getEmpId());
 		
-		String imagePath = empsService.getProfleImagePath(request, "/static/img/emp/", empsData);
+		String imagePath = empsService.getProfileImagePath(request, "/static/img/emp/", empsData);
 		
 		request.setAttribute("empsData", empsData);
-		request.setAttribute("empsDetailData", empsDetailDTO);
+		request.setAttribute("empsDetailData", empsDetailData);
 		request.setAttribute("imagePath", imagePath);
-		
 		
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 
 }

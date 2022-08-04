@@ -59,7 +59,7 @@ function ajaxImageUpload(e) {
 			<div class="input-form inline">
 				<div class="input-form">
 					<label class="input-label w-100">ID</label>
-					<input class="input-text w-auto" type="text" name="empId" value="${param.empId}">
+					<input class="input-text w-auto" type="text" name="empId" value="">
 				</div>
 				<div class="input-form">
 					<label class="input-label w-100">이름</label>
@@ -73,10 +73,10 @@ function ajaxImageUpload(e) {
 						<c:forEach items="${jobDatas}" var="item">
 							<c:choose>
 								<c:when test="${item.jobId eq param.jobId}">
-								<option value="${item.jobId}" selected>${item.jobName}</option>
+									<option value="${item.jobId}" selected>${item.jobName}</option>
 								</c:when>
 								<c:otherwise>
-								<option value="${item.jobId}">${item.jobName}</option>
+									<option value="${item.jobId}">${item.jobName}</option>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
@@ -101,7 +101,7 @@ function ajaxImageUpload(e) {
 			<div class="input-form inline">
 				<div class="input-form">
 					<label class="input-label w-100">이메일</label>
-					<input class="input-text w-auto" type="text" name="email" value="">
+					<input class="input-text w-auto" type="text" name="email" value="${param.email}">
 				</div>
 			</div>
 			<div class="input-form inline">
@@ -111,7 +111,7 @@ function ajaxImageUpload(e) {
 				</div>
 				<div class="input-form">
 					<label class="input-label w-100">전화번호</label>
-					<input class="input-text w-auto" type="text" name="phone" value=""${param.phone}>
+					<input class="input-text w-auto" type="text" name="phone" value="${param.phone}">
 				</div>
 			</div>
 			<div class="input-form inline">

@@ -16,45 +16,44 @@ import emps.service.EmpsService;
 public class EmpsDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String view = "/WEB-INF/jsp/emps/delete.jsp";
-       
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String id =request.getParameter("id");
+		String id = request.getParameter("id");
 		
 		EmpsService empsService = new EmpsService();
 		EmpsDTO empsData = empsService.getId(id);
 		
-		if(empsData ==null) {
+		if(empsData == null) {
 			request.setAttribute("error", "해당 데이터는 존재하지 않습니다.");
 		}
 		
-		request.setAttribute("empsData",empsData); 
+		request.setAttribute("empsData", empsData);
 		
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id =request.getParameter("empId");
+		String id = request.getParameter("empId");
 		
 		EmpsService empsService = new EmpsService();
 		EmpsDTO empsData = empsService.getId(id);
 		
-		if(empsData ==null) {
+		if(empsData == null) {
 			request.setAttribute("error", "해당 데이터는 이미 삭제되었습니다.");
 		}
 		
 		boolean result = empsService.removeId(empsData.getEmpId());
 		
-		if (result) {
+		if(result) {
 			response.sendRedirect("/emps");
 			return;
-		}else {
+		} else {
 			request.setAttribute("error", "삭제 작업 중 예상치 못한 문제가 발생하였습니다.");
 		}
 		
 		request.getRequestDispatcher(view).forward(request, response);
-		
 	}
 
 }
