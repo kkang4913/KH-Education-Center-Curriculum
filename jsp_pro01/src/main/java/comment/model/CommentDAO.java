@@ -34,7 +34,11 @@ public class CommentDAO {
 		int res = session.update(mapId, data);
 		return res == 1 ? true : false;
 	}
-
+	public boolean updateData(CommentDTO commentData) {
+		String mapId = String.format("commentMapper.%s", "updateData");
+		int res = session.update(mapId, commentData);
+		return res == 1 ? true : false;
+	}
 	public void commit() {
 		session.commit();
 	}
@@ -46,5 +50,7 @@ public class CommentDAO {
 	public void close() {
 		session.close();
 	}
+
+
 
 }

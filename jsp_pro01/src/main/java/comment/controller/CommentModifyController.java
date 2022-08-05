@@ -12,11 +12,10 @@ import comment.model.CommentDTO;
 import comment.service.CommentService;
 import emps.model.EmpsDTO;
 
-
-@WebServlet("/comment/delete")
-public class CommentDeleteController extends HttpServlet {
+@WebServlet("/comment/modify")
+public class CommentModifyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+       
 	private CommentService service = new CommentService();
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,6 +23,7 @@ public class CommentDeleteController extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		String id = request.getParameter("id");
+		String content = request.getParameter("content");
 		
 		CommentDTO commentData = service.getData(Integer.parseInt(id));
 		EmpsDTO empData = (EmpsDTO)session.getAttribute("loginData");
@@ -31,14 +31,12 @@ public class CommentDeleteController extends HttpServlet {
 		StringBuilder sb = new StringBuilder();
 		sb.append("{");
 		if(commentData.getEmpId() == empData.getEmpId()) {
-			boolean result = service.remove(commentData);
+			commentData.setContent(content);
+			boolean result = service.modify(commentData);
 			if(result) {
-				sb.append(String.format("\"%s\": \"%s\"", "code", commentData.getContent()));
-			} else {
-				sb.append(String.format("\"%s\": \"%s\"", "code", "error"));
+				sb.append(String.format("\"%s\": \"%s\", ", "code","success" ));
+				sb.append(String.format("\"%s\": \"%s\" ", "value",commentData.getContent().replace("\r", "\\r").replace("\n", "\\n")));
 			}
-		} else {
-			sb.append(String.format("\"%s\": \"%s\"", "code", "error"));
 		}
 		sb.append("}");
 		
