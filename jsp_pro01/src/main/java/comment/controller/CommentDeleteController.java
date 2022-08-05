@@ -1,4 +1,4 @@
-package board.controller;
+package comment.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,37 +8,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import board.model.EmpBoardDTO;
-import board.service.EmpBoardService;
+import comment.model.CommentDTO;
+import comment.service.CommentService;
 import emps.model.EmpsDTO;
 
-@WebServlet("/board/delete")
-public class EmpBoardDeleteController extends HttpServlet {
+
+@WebServlet("/comment/delete")
+public class CommentDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private EmpBoardService service = new EmpBoardService();
+	private CommentService service = new CommentService();
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json; charset=utf-8");
-		
 		HttpSession session = request.getSession();
 		
 		String id = request.getParameter("id");
 		
-		EmpBoardDTO data = service.getData(Integer.parseInt(id));
+		CommentDTO commentData = service.getData(Integer.parseInt(id));
 		EmpsDTO empData = (EmpsDTO)session.getAttribute("loginData");
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append("{");
-		if(data != null) {
-			if(data.getEmpId() == empData.getEmpId()) {
-				service.remove(data);
+		if(commentData.getEmpId() == empData.getEmpId()) {
+			boolean result = service.remove(commentData);
+			if(result) {
 				sb.append(String.format("\"%s\": \"%s\"", "code", "success"));
 			} else {
-				sb.append(String.format("\"%s\": \"%s\"", "code", "permissionError"));
+				sb.append(String.format("\"%s\": \"%s\"", "code", "error"));
 			}
 		} else {
-			sb.append(String.format("\"%s\": \"%s\"", "code", "notExists"));
+			sb.append(String.format("\"%s\": \"%s\"", "code", "error"));
 		}
 		sb.append("}");
 		

@@ -67,10 +67,25 @@
 							<div class="d-flex justify-content-between">
 								<span><small>${comment.empName}</small></span>
 								<span><small>${comment.createDate}</small></span>
-							</div>	
-						</div>	
+							</div>
+						</div>
 						<div class="card-body">
-							<p>${comment.content }</p>
+							<input type = "hidden" value="${comment.id}">
+							<c:choose>
+								<c:when test="${comment.isDeleted()}">
+									<p class="text-muted">삭제된 댓글 입니다.</p>
+								</c:when>
+								<c:otherwise>
+									
+									<p class="card-text">${comment.content}</p>
+								</c:otherwise>
+							</c:choose>
+							<c:if test="${sessionScope.loginData.empId eq comment.empId}">
+								<div class="text-end">
+									<button class="btn btn-sm btn-outline-dark" type="button" onclick="changeEdit(this);" >수정</button>
+									<button class="btn btn-sm btn-outline-dark" type="button" onclick="commentDelete(this, ${comment.id})">삭제</button>
+								</div>
+							</c:if>
 						</div>
 					</div>
 				</div>
@@ -84,8 +99,7 @@
 					</div>
 				</form>
 			</div>
-		</div>	
-		
+		</div>
 		
 		<div class="modal fade" id="removeModal" tabindex="-1" aria-hidden="true">
 			<div class="modal-dialog">
@@ -106,11 +120,79 @@
 	</section>
 	<footer></footer>
 	<script type="text/javascript">
+		function changeEdit(element) {
+			element.innerText = "확인";
+			element.nextElementSibling.remove();
+			
+			var value = element.parentElement.previousElementSibling.innerText;
+			var textarea = document.createElement("textarea");
+			textarea.setAttribute("class", "form-control");
+			textarea.value = value;
+			
+			element.parentElement.previousElementSibling.innerText = "";
+			element.parentElement.previousElementSibling.append(textarea);
+			
+			element.setAttribute("onclick", "commentUpdate(this);");
+			
+		}
+		
+		function commentUpdate(element) {
+			var cid = element.parentElement.parentElement.children[0].value;
+			var value = element.parentElement.previousElementSibling.children[0].value;
+			
+			$.ajax({
+				url: "/comment/modify",
+				type: "post",
+				data: {
+					id: cid,
+					content : value
+				},
+				complete: function(data) {
+						changeText(element);
+				}
+			});
+		}
+		
+		
+		function changeText(element) {
+			element.innerText = "수정";
+			
+			var cid = element.parentElement.parentElement.children[0].value;
+			var value = element.parentElement.previousElementSibling.children[0].value;
+			element.parentElement.previousElementSibling.children[0].remove;
+			element.parentElement.previousElementSibling.innerText = value;
+			
+			var btnDelete = document.createElement("button");
+			btnDelete.innerText = "삭제";
+			btnDelete.setAttribute("class", "btn btn-sm btn-outline-dark");
+			btnDelete.setAttribute("onclick", "commentDelete(this, " + cid + ");");
+			
+			element.parentElement.append(btnDelete);
+			
+			element.setAttribute("onclick", "changeEdit(this);");
+
+		}
+		
+		
+		function commentDelete(element, id) {
+			$.ajax({
+				url: "/comment/delete",
+				type: "post",
+				data: {
+					id: id
+				},
+				success: function(data) {
+					if(data.code === "success") {
+						element.parentElement.parentElement.parentElement.parentElement.remove();
+					}
+				}
+			});
+		}
 		function formCheck(form) {
 			if(form.content.value.trim() === "") {
-				alert("댓글 내용을 입력하세요.")
-			}else{
-			form.submit();
+				alert("댓글 내용을 입력하세요.");
+			} else {
+				form.submit();
 			}
 		}
 		function deleteBoard(boardId) {
