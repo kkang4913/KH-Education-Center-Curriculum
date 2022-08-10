@@ -18,7 +18,7 @@ public class CommentModifyController extends HttpServlet {
        
 	private CommentService service = new CommentService();
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json; charset=utf-8");
 		HttpSession session = request.getSession();
 		

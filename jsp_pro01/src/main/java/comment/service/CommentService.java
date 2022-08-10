@@ -2,6 +2,8 @@ package comment.service;
 
 import java.util.List;
 
+import board.model.EmpBoardDAO;
+import board.model.EmpBoardDTO;
 import comment.model.CommentDAO;
 import comment.model.CommentDTO;
 
@@ -63,6 +65,13 @@ public class CommentService {
 		dao.close();
 		
 		return result;
+	}
+
+	public List getAll() {
+		CommentDAO dao = new CommentDAO();
+		List<CommentDTO> datas = dao.selectAll();
+		dao.close();
+		return datas;
 	}
 
 }

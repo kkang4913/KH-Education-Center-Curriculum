@@ -23,6 +23,7 @@
 		  JOIN EMPLOYEES E
 		    ON C.EMPID = E.EMPLOYEE_ID
 		 WHERE C.BID = #{bId}
+		 ORDER BY C.ID
 	</select>
 	<select id="selectData" resultType="commentDto">
 		SELECT C.ID
@@ -49,7 +50,19 @@
 		   SET CONTENT = #{content}
 		 WHERE ID = #{id}
 	</update>
-	
-
+	<select id="selectAll" resultType="commentDto">
+				SELECT C.ID
+		     , C.BID
+		     , EMPID
+		     , E.FIRST_NAME || ' ' || E.LAST_NAME AS empName
+		     , C.CONTENT
+		     , C.CREATEDATE
+		     , C.DELETED
+		     , C.HIDDEN
+		     , C.LIKECNT
+		  FROM COMMENTS C
+		  JOIN EMPLOYEES E
+		    ON C.EMPID = E.EMPLOYEE_ID
+	</select>
 	
 </mapper>

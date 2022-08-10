@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.conn.db.DBConn;
 
+import board.model.EmpBoardDTO;
+
 public class CommentDAO {
 
 	private SqlSession session = DBConn.getSqlSession();
@@ -49,6 +51,13 @@ public class CommentDAO {
 
 	public void close() {
 		session.close();
+	}
+
+
+	public List<CommentDTO> selectAll() {
+		String mapperId = String.format("commentMapper.%s", "selectAll");
+		List<CommentDTO> res = session.selectList(mapperId);
+		return res;
 	}
 
 

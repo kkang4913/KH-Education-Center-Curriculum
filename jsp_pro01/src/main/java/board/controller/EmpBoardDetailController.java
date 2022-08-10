@@ -19,6 +19,7 @@ import board.model.EmpBoardDTO;
 import board.service.EmpBoardService;
 import comment.model.CommentDTO;
 import comment.service.CommentService;
+import common.util.Paging;
 import emps.model.EmpsDTO;
 import emps.service.EmpsService;
 
@@ -36,27 +37,29 @@ public class EmpBoardDetailController extends HttpServlet {
 		
 		EmpBoardDTO data = service.getData(Integer.parseInt(id));
 		
-		if(data !=null) {
+		if(data != null) {
 			HttpSession session = request.getSession();
 			
-			service.incViewCnt(session,data);
+			service.incViewCnt(session, data);
 			
 			EmpsDTO empData = empsService.getId("" + data.getEmpId());
 			CommentService commentService = new CommentService();
+			List commentDatas = commentService.getDatas(data.getId());
 			
-			List<CommentDTO> commentDatas = commentService.getDatas(data.getId());
-		
+			String page = request.getParameter("page");
+			page = page == null ? "1" : page;
+			
+			Paging commentPage = new Paging(commentDatas, Integer.parseInt(page), 5);
 			
 			request.setAttribute("data", data);
 			request.setAttribute("empData", empData);
-			request.setAttribute("commentDatas", commentDatas);
+			request.setAttribute("commentPage", commentPage);
 			
 			RequestDispatcher rd = request.getRequestDispatcher(view);
 			rd.forward(request, response);
-		}else {
-			// 데이터 조회되지 않은 경우
-			// 별도의 에러 페이지로 저환
-			
+		} else {
+			// 데이터가 조회되지 않은 경우
+			// 별도의 에러 페이지로 전환
 		}
 	}
 
