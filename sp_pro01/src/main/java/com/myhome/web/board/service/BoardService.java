@@ -1,6 +1,9 @@
 package com.myhome.web.board.service;
 
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.myhome.web.board.model.BoardDAO;
 import com.myhome.web.board.model.BoardDTO;
 import com.myhome.web.board.model.BoardStaticsDTO;
+import com.myhome.web.emp.model.EmpDTO;
 
 @Service
 public class BoardService {
@@ -30,7 +34,6 @@ public class BoardService {
 		BoardDTO data = dao.selectData(id);
 		return data;
 	}
-	
 	public int add(BoardDTO data) {
 		logger.info("add(data={})", data);
 		int seq = dao.getNextSeq();
@@ -61,52 +64,14 @@ public class BoardService {
 		
 		return result;
 	}
-	/*
-
-	public void incViewCnt(HttpSession session, BoardDTO data) {
-		BoardDAO dao = new BoardDAO();
-		
-		BoardStaticsDTO staticsData = new BoardStaticsDTO();
-		staticsData.setbId(data.getId());
-		staticsData.setEmpId(((EmpsDTO)session.getAttribute("loginData")).getEmpId());
-		
-		staticsData = dao.selectStatics(staticsData);
-		
-		boolean result = false;
-		if(staticsData == null) {
-			result = dao.updateViewCnt(data);
-			
-			staticsData = new BoardStaticsDTO();
-			staticsData.setbId(data.getId());
-			staticsData.setEmpId(((EmpsDTO)session.getAttribute("loginData")).getEmpId());
-			dao.insertStatics(staticsData);
-		} else {
-			long timeDiff = new Date().getTime() - staticsData.getLatestViewDate().getTime();
-			if(timeDiff / (1000 * 60 * 60 * 24) >= 7) {
-				result = dao.updateViewCnt(data);
-				dao.updateStatics(staticsData);
-			}
-		}
-		
-		if(result) {
-			data.setViewCnt(data.getViewCnt() + 1);
-			dao.commit();
-			dao.close();
-		}
-		dao.rollback();
-		dao.close();
-	}
-	
 	public void incLike(HttpSession session, BoardDTO data) {
-		EmpsDTO empData = (EmpsDTO)session.getAttribute("loginData");
-		BoardDAO dao = new BoardDAO();
+		EmpDTO empData = (EmpDTO)session.getAttribute("loginData");
 		
 		BoardStaticsDTO staticsData = new BoardStaticsDTO();
 		staticsData.setbId(data.getId());
 		staticsData.setEmpId(empData.getEmpId());
-		
 		staticsData = dao.selectStatics(staticsData);
-		
+
 		// 이전에 추천을 했는지 안 했는지 확인
 		if(staticsData.isLiked()) {
 			// 이전에 추천을 한 기록이 있으면 -> 추천 취소로 전환
@@ -122,14 +87,42 @@ public class BoardService {
 		boolean result = dao.updateLike(data);
 		
 		if(result) {
-			dao.commit();
+		
 		} else {
-			dao.rollback();
+		
 		}
-		dao.close();
+	
 	}
 
+	public void incViewCnt(HttpSession session, BoardDTO data) {
+		
+		BoardStaticsDTO staticsData = new BoardStaticsDTO();
+		staticsData.setbId(data.getId());
+		staticsData.setEmpId(((EmpDTO)session.getAttribute("loginData")).getEmpId());
+		logger.info("staticsData({})",staticsData);
+		
+		staticsData = dao.selectStatics(staticsData);
+		
+		boolean result = false;
+		if(staticsData == null) {
+			result = dao.updateViewCnt(data);
+			
+			staticsData = new BoardStaticsDTO();
+			staticsData.setbId(data.getId());
+			staticsData.setEmpId(((EmpDTO)session.getAttribute("loginData")).getEmpId());
+			dao.insertStatics(staticsData);
+		} else {
+			long timeDiff = new Date().getTime() - staticsData.getLatestViewDate().getTime();
+			if(timeDiff / (1000 * 60 * 60 * 24) >= 7) {
+				result = dao.updateViewCnt(data);
+				dao.updateStatics(staticsData);
+			}
+		}
+		
+		if(result) {
+			data.setViewCnt(data.getViewCnt() + 1);
+		}
+	}
 
-	*/
 
 }

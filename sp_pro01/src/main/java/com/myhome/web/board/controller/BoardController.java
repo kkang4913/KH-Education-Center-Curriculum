@@ -1,5 +1,6 @@
 package com.myhome.web.board.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -24,6 +25,7 @@ import com.myhome.web.board.service.BoardService;
 import com.myhome.web.board.vo.BoardVO;
 import com.myhome.web.common.util.Paging;
 import com.myhome.web.emp.model.EmpDTO;
+
 
 @Controller
 @RequestMapping(value="/board")
@@ -50,6 +52,9 @@ public class BoardController {
 			session.setAttribute("pageCount", pageCount);
 		}
 		
+		
+		
+		
 		pageCount = Integer.parseInt(session.getAttribute("pageCount").toString());
 		Paging paging = new Paging(datas, page, pageCount);
 		
@@ -61,20 +66,25 @@ public class BoardController {
 	
 	@GetMapping(value="/detail")
 	public String getDetail(Model model
-			, @RequestParam int id) {
+			, @RequestParam int id
+			,HttpSession session){
 		logger.info("getDetail(id={})", id);
 		
 		BoardDTO data = service.getData(id);
 		
 		if(data != null) {
+			service.incViewCnt(session, data);
 			model.addAttribute("data", data);
 			return "board/detail";			
 		} else {
 			model.addAttribute("error", "해당 데이터가 존재하지 않습니다.");
 			return "error/notExists";
 		}
-			
 	}
+	
+	
+	
+	
 	
 	@GetMapping(value="/add")
 	public String add() {
@@ -170,7 +180,6 @@ public class BoardController {
 				if(result) {
 					json.put("code", "success");
 					json.put("message", "삭제가 완료되었습니다.");
-					json.put("nextUrl", "/board");
 				}else {
 					//삭제 실패
 					json.put("code", "fail");
@@ -186,4 +195,26 @@ public class BoardController {
 		return json.toJSONString();
 	}
 	
+	@PostMapping(value = "/like",produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String like(@RequestParam int id
+			,@SessionAttribute("loginData") EmpDTO empDto
+			,HttpSession session) {
+		logger.info("like(empDto={}, id={}, session={})", empDto, id,session);
+		
+		BoardDTO data = service.getData(id);
+		
+		JSONObject json = new JSONObject();
+		
+		if(data != null) {
+			service.incLike(session, data);
+			json.put("code", "success");
+			json.put("like", data.getLike());
+		}else {
+			json.put("code", "noData");
+			json.put("message", "해당 데이터가 존재하지 않습니다.");
+		}
+		
+		return json.toJSONString();
+	}
 }

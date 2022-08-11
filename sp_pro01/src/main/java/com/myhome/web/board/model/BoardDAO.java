@@ -31,7 +31,6 @@ public class BoardDAO {
 		BoardDTO res = session.selectOne(mapperId, id);
 		return res;
 	}
-	
 	public int getNextSeq() {
 		logger.info("getNextSeq()");
 		String mapperId = String.format(mapper, "getNextSeq");
@@ -64,26 +63,28 @@ public class BoardDAO {
 		int res = session.delete(mapperId, data);
 		return res == 1 ? true : false;
 	}
-	
-	/*
-	
+	public BoardStaticsDTO selectStatics(BoardStaticsDTO staticsData) {
+		String mapperId = String.format(mapper, "selectStatics");
+		BoardStaticsDTO data = session.selectOne(mapperId, staticsData);
+		return data;
+	}
+	public boolean updateLike(BoardDTO data) {
+		String mapperId = String.format(mapper, "updateLike");
+		int res = session.update(mapperId, data);
+		return res == 1 ? true : false;
+	}
+	public boolean updateStaticsLike(BoardStaticsDTO data) {
+		String mapperId = String.format(mapper, "updateStaticsLike");
+		int res = session.update(mapperId, data);
+		return res == 1 ? true : false;
+	}
+
 	public boolean updateViewCnt(BoardDTO data) {
 		String mapperId = String.format(mapper, "updateViewCnt");
 		int res = session.update(mapperId, data);
 		return res == 1 ? true : false;
 	}
 	
-	public boolean updateLike(BoardDTO data) {
-		String mapperId = String.format(mapper, "updateLike");
-		int res = session.update(mapperId, data);
-		return res == 1 ? true : false;
-	}
-	
-	public BoardStaticsDTO selectStatics(BoardStaticsDTO staticsData) {
-		String mapperId = String.format(mapper, "selectStatics");
-		BoardStaticsDTO data = session.selectOne(mapperId, staticsData);
-		return data;
-	}
 	
 	public boolean insertStatics(BoardStaticsDTO staticsData) {
 		String mapperId = String.format(mapper, "insertStatics");
@@ -97,11 +98,7 @@ public class BoardDAO {
 		return res == 1 ? true : false;
 	}
 	
-	public boolean updateStaticsLike(BoardStaticsDTO data) {
-		String mapperId = String.format(mapper, "updateStaticsLike");
-		int res = session.update(mapperId, data);
-		return res == 1 ? true : false;
-	}
+
 	
 	
 	public void commit() {
@@ -111,5 +108,5 @@ public class BoardDAO {
 	public void rollback() {
 		this.session.rollback();
 	}
-	*/
+
 }

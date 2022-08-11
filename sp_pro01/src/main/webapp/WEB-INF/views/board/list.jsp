@@ -12,7 +12,7 @@
 </head>
 <body>
 	<header class="mb-3">
-	<%@ include file="../module/navigation.jsp" %>
+		<%@ include file="../module/navigation.jsp" %>
 	</header>
 	<section class="container">
 		<div class="mb-1">
@@ -30,7 +30,7 @@
 					</div>
 					<div class="col-1">
 						<select class="form-select" onchange="location.href='${boardUrl}?pageCount=' + this.value">
-							<option value="5"  ${sessionScope.pageCount == 5 ? 'selected' : ''}>5 개</option>
+							<option value="5" ${sessionScope.pageCount == 5 ? 'selected' : ''}>5 개</option>
 							<option value="10" ${sessionScope.pageCount == 10 ? 'selected' : ''}>10 개</option>
 							<option value="15" ${sessionScope.pageCount == 15 ? 'selected' : ''}>15 개</option>
 							<option value="20" ${sessionScope.pageCount == 20 ? 'selected' : ''}>20 개</option>
@@ -79,19 +79,19 @@
 		<nav>
 			<div>
 				<ul class="pagination justify-content-center">
-					<c:if test="${pagingData.hasPrevPage()}">
+					<c:if test="${pageData.hasPrevPage()}">
 						<li class="page-item">
-							<a class="page-link" href="${boardUrl}?page=${pagingData.prevPageNumber}">Prev</a>
+							<a class="page-link" href="${boardUrl}?page=${pageData.prevPageNumber}">Prev</a>
 						</li>
 					</c:if>
-					<c:forEach items="${pagingData.getPageNumberList(pagingData.currentPageNumber - 2, pagingData.currentPageNumber + 2)}" var="num">
-						<li class="page-item ${pagingData.currentPageNumber eq num ? 'active' : ''}">
+					<c:forEach items="${pageData.getPageNumberList(pageData.currentPageNumber - 2, pageData.currentPageNumber + 2)}" var="num">
+						<li class="page-item ${pageData.currentPageNumber eq num ? 'active' : ''}">
 							<a class="page-link" href="${boardUrl}?page=${num}">${num}</a>
 						</li>
 					</c:forEach>
-					<c:if test="${pagingData.hasNextPage()}">
+					<c:if test="${pageData.hasNextPage()}">
 						<li class="page-item">
-							<a class="page-link" href="${boardUrl}?page=${pagingData.nextPageNumber}">Next</a>
+							<a class="page-link" href="${boardUrl}?page=${pageData.nextPageNumber}">Next</a>
 						</li>
 					</c:if>
 				</ul>

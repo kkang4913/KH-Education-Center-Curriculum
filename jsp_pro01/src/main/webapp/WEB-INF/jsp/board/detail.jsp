@@ -219,7 +219,7 @@
 		}
 		function deleteBoard(boardId) {
 			$.ajax({
-				url: "/board/delete",
+				url: "/board/delete", //하드코딩으로 진행하면 안된다. contentpath : 누락
 				type: "post",
 				data: {
 					id: boardId
