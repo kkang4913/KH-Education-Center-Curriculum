@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,6 +30,12 @@ public class LoginController {
 	@Autowired //알아서 객체 생성 , 알아서 주입, 제어 역할
 	private DeptService deptService;
 	
+	@GetMapping(value = "/login")
+	public String login(Model model) {
+		List<DeptDTO> deptDatas = deptService.getAll();
+		model.addAttribute("deptDatas",deptDatas);
+		return "login/login";
+	}
 	
 	@RequestMapping(value = "/login", method =RequestMethod.POST)
 	//jsp 파일의 name 이 매치가 되어야한다.
@@ -47,9 +54,7 @@ public class LoginController {
 			return "redirect:/";
 		}else {
 			//로그인 실패
-			List<DeptDTO> deptDatas = deptService.getAll();
-			model.addAttribute("deptDatas", deptDatas);
-			return "login/login";
+			return login(model);
 		}
 	}
 	

@@ -1,58 +1,67 @@
 package com.myhome.web.board.service;
 
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.myhome.web.board.model.BoardDAO;
 import com.myhome.web.board.model.BoardDTO;
+import com.myhome.web.board.model.BoardStaticsDTO;
 
 @Service
 public class BoardService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(BoardService.class);
 	
 	@Autowired
 	private BoardDAO dao;
 	
 	public List<BoardDTO> getAll() {
+		logger.info("getAll()");
 		List<BoardDTO> datas = dao.selectAll();
 		return datas;
 	}
 	
-	/*
+	public BoardDTO getData(int id) {
+		logger.info("getData(id={})", id);
+		BoardDTO data = dao.selectData(id);
+		return data;
+	}
+	
 	public int add(BoardDTO data) {
-		BoardDAO dao = new BoardDAO();
-		
+		logger.info("add(data={})", data);
 		int seq = dao.getNextSeq();
 		data.setId(seq);
 		
 		boolean result = dao.insertData(data);
 		
 		if(result) {
-			dao.commit();
-			dao.close();
 			return data.getId();
 		}
-		
-		dao.rollback();
-		dao.close();
 		return -1;
 	}
-
-	public BoardDTO getData(int id) {
-		BoardDAO dao = new BoardDAO();
+	public boolean modify(BoardDTO data) {
+		logger.info("modify(data={})",data);
+		boolean result = dao.updateData(data);
 		
-		BoardDTO data = dao.selectData(id);
-		dao.close();
 		
-		return data;
+		return result;
 	}
+	public boolean remove(BoardDTO data) {
+		logger.info("remove(data={})", data);
+
+		BoardStaticsDTO staticsData = new BoardStaticsDTO();
+		staticsData.setbId(data.getId());
+		
+		dao.deleteStaticsData(staticsData);
+		boolean result = dao.deleteData(data);
+		
+		return result;
+	}
+	/*
 
 	public void incViewCnt(HttpSession session, BoardDTO data) {
 		BoardDAO dao = new BoardDAO();
@@ -119,39 +128,8 @@ public class BoardService {
 		}
 		dao.close();
 	}
-	
 
 
-	public boolean remove(BoardDTO data) {
-		BoardDAO dao = new BoardDAO();
-		
-		BoardStaticsDTO staticsData = new BoardStaticsDTO();
-		staticsData.setbId(data.getId());
-		
-		dao.deleteStaticsData(staticsData);
-		boolean result = dao.deleteData(data);
-		
-		if(result) {
-			dao.commit();
-		} else {
-			dao.rollback();
-		}
-		dao.close();
-		return result;
-	}
+	*/
 
-	public boolean modify(BoardDTO data) {
-		BoardDAO dao = new BoardDAO();
-		
-		boolean result =  dao.updateData(data);
-
-		if(result) {
-			dao.commit();
-		}else {
-			dao.rollback();
-		}
-			dao.close();
-			return result;
-	}
-*/
 }
