@@ -3,12 +3,14 @@ package com.myhome.web.board.service;
 import java.util.Date;
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.myhome.web.board.model.BoardDAO;
 import com.myhome.web.board.model.BoardDTO;
@@ -32,6 +34,11 @@ public class BoardService {
 	public BoardDTO getData(int id) {
 		logger.info("getData(id={})", id);
 		BoardDTO data = dao.selectData(id);
+		return data;
+	}
+	public List<BoardDTO> getData(String search) {
+		logger.info("getData(id={})", search);
+		List<BoardDTO> data = dao.selectData(search);
 		return data;
 	}
 	
@@ -64,6 +71,7 @@ public class BoardService {
 		
 		return result;
 	}
+	@Transactional
 	public void incViewCnt(HttpSession session, BoardDTO data) {
 		logger.info("incViewCnt(data={})", data);
 		BoardStaticsDTO staticsData = new BoardStaticsDTO();
@@ -75,16 +83,28 @@ public class BoardService {
 		boolean result = false;
 		if(staticsData == null) {
 			result = dao.updateViewCnt(data);
+			if(!result) {
+				throw new RuntimeException("조회수 통계 업데이트 처리에 문제가 발생 하였습니다.");
+			}
 			
 			staticsData = new BoardStaticsDTO();
 			staticsData.setbId(data.getId());
 			staticsData.setEmpId(((EmpDTO)session.getAttribute("loginData")).getEmpId());
-			dao.insertStatics(staticsData);
+			result = dao.insertStatics(staticsData);
+			if(!result) {
+				throw new RuntimeException("조회수 통계 추가 처리에 문제가 발생 하였습니다.");
+			}
 		} else {
 			long timeDiff = new Date().getTime() - staticsData.getLatestViewDate().getTime();
 			if(timeDiff / (1000 * 60 * 60 * 24) >= 7) {
 				result = dao.updateViewCnt(data);
-				dao.updateStatics(staticsData);
+				if (!result) {
+					throw new RuntimeException("조회수 업데이터 처리에 문제가 발생 하였습니다.");
+				}
+				result = dao.updateStatics(staticsData);
+				if(!result) {
+					throw new RuntimeException("조회수 통계 업데이트 처리에 문제가 발생 하였습니다.");
+				}
 			}
 		}
 		

@@ -31,6 +31,12 @@ public class BoardDAO {
 		BoardDTO res = session.selectOne(mapperId, id);
 		return res;
 	}
+	public List<BoardDTO> selectData(String search) {
+		logger.info("selectData(search={})", search);
+		String mapperId = String.format(mapper, "searchData");
+		List<BoardDTO> res = session.selectList(mapperId, search);
+		return res;
+	}
 	
 	public int getNextSeq() {
 		logger.info("getNextSeq()");

@@ -1,5 +1,6 @@
 package com.myhome.web.board.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -25,6 +26,7 @@ import com.myhome.web.board.vo.BoardVO;
 import com.myhome.web.common.util.Paging;
 import com.myhome.web.emp.model.EmpDTO;
 
+
 @Controller
 @RequestMapping(value="/board")
 public class BoardController {
@@ -37,7 +39,8 @@ public class BoardController {
 	@RequestMapping(value="", method=RequestMethod.GET)
 	public String getList(Model model, HttpSession session
 			, @RequestParam(defaultValue="1", required=false) int page
-			, @RequestParam(defaultValue="0", required=false) int pageCount) {
+			, @RequestParam(defaultValue="0", required=false) int pageCount
+			, @RequestParam(defaultValue = "", required=false)String search) {
 		logger.info("getList(page={}, pageCount={})", page, pageCount);
 		
 		List datas = service.getAll();
@@ -49,6 +52,12 @@ public class BoardController {
 		if(pageCount > 0) {
 			session.setAttribute("pageCount", pageCount);
 		}
+		
+		if(search !=null) {
+			List data = service.getData(search);
+			logger.info("dataList=({})",data);
+		}
+		
 		
 		pageCount = Integer.parseInt(session.getAttribute("pageCount").toString());
 		Paging paging = new Paging(datas, page, pageCount);
