@@ -34,6 +34,7 @@ public class BoardService {
 		BoardDTO data = dao.selectData(id);
 		return data;
 	}
+	
 	public int add(BoardDTO data) {
 		logger.info("add(data={})", data);
 		int seq = dao.getNextSeq();
@@ -46,16 +47,15 @@ public class BoardService {
 		}
 		return -1;
 	}
+	
 	public boolean modify(BoardDTO data) {
-		logger.info("modify(data={})",data);
+		logger.info("modify(data={})", data);
 		boolean result = dao.updateData(data);
-		
-		
 		return result;
 	}
+	
 	public boolean remove(BoardDTO data) {
 		logger.info("remove(data={})", data);
-
 		BoardStaticsDTO staticsData = new BoardStaticsDTO();
 		staticsData.setbId(data.getId());
 		
@@ -64,42 +64,11 @@ public class BoardService {
 		
 		return result;
 	}
-	public void incLike(HttpSession session, BoardDTO data) {
-		EmpDTO empData = (EmpDTO)session.getAttribute("loginData");
-		
-		BoardStaticsDTO staticsData = new BoardStaticsDTO();
-		staticsData.setbId(data.getId());
-		staticsData.setEmpId(empData.getEmpId());
-		staticsData = dao.selectStatics(staticsData);
-
-		// 이전에 추천을 했는지 안 했는지 확인
-		if(staticsData.isLiked()) {
-			// 이전에 추천을 한 기록이 있으면 -> 추천 취소로 전환
-			staticsData.setLiked(false);
-			data.setLike(data.getLike() - 1);
-		} else {
-			// 이전에 추천을 한 기록이 없으면 -> 추천으로 전환
-			staticsData.setLiked(true);
-			data.setLike(data.getLike() + 1);
-		}
-		
-		dao.updateStaticsLike(staticsData);
-		boolean result = dao.updateLike(data);
-		
-		if(result) {
-		
-		} else {
-		
-		}
-	
-	}
-
 	public void incViewCnt(HttpSession session, BoardDTO data) {
-		
+		logger.info("incViewCnt(data={})", data);
 		BoardStaticsDTO staticsData = new BoardStaticsDTO();
 		staticsData.setbId(data.getId());
 		staticsData.setEmpId(((EmpDTO)session.getAttribute("loginData")).getEmpId());
-		logger.info("staticsData({})",staticsData);
 		
 		staticsData = dao.selectStatics(staticsData);
 		
@@ -123,6 +92,31 @@ public class BoardService {
 			data.setViewCnt(data.getViewCnt() + 1);
 		}
 	}
-
+	
+	public void incLike(HttpSession session, BoardDTO data) {
+		logger.info("incLike(data={})", data);
+		
+		EmpDTO empData = (EmpDTO)session.getAttribute("loginData");
+		
+		BoardStaticsDTO staticsData = new BoardStaticsDTO();
+		staticsData.setbId(data.getId());
+		staticsData.setEmpId(empData.getEmpId());
+		
+		staticsData = dao.selectStatics(staticsData);
+		
+		// 이전에 추천을 했는지 안 했는지 확인
+		if(staticsData.isLiked()) {
+			// 이전에 추천을 한 기록이 있으면 -> 추천 취소로 전환
+			staticsData.setLiked(false);
+			data.setLike(data.getLike() - 1);
+		} else {
+			// 이전에 추천을 한 기록이 없으면 -> 추천으로 전환
+			staticsData.setLiked(true);
+			data.setLike(data.getLike() + 1);
+		}
+		
+		dao.updateStaticsLike(staticsData);
+		boolean result = dao.updateLike(data);
+	}
 
 }

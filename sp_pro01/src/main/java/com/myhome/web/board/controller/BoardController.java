@@ -1,6 +1,5 @@
 package com.myhome.web.board.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -25,7 +24,6 @@ import com.myhome.web.board.service.BoardService;
 import com.myhome.web.board.vo.BoardVO;
 import com.myhome.web.common.util.Paging;
 import com.myhome.web.emp.model.EmpDTO;
-
 
 @Controller
 @RequestMapping(value="/board")
@@ -52,9 +50,6 @@ public class BoardController {
 			session.setAttribute("pageCount", pageCount);
 		}
 		
-		
-		
-		
 		pageCount = Integer.parseInt(session.getAttribute("pageCount").toString());
 		Paging paging = new Paging(datas, page, pageCount);
 		
@@ -66,8 +61,8 @@ public class BoardController {
 	
 	@GetMapping(value="/detail")
 	public String getDetail(Model model
-			, @RequestParam int id
-			,HttpSession session){
+			, HttpSession session
+			, @RequestParam int id) {
 		logger.info("getDetail(id={})", id);
 		
 		BoardDTO data = service.getData(id);
@@ -75,16 +70,12 @@ public class BoardController {
 		if(data != null) {
 			service.incViewCnt(session, data);
 			model.addAttribute("data", data);
-			return "board/detail";			
+			return "board/detail";
 		} else {
 			model.addAttribute("error", "해당 데이터가 존재하지 않습니다.");
 			return "error/notExists";
 		}
 	}
-	
-	
-	
-	
 	
 	@GetMapping(value="/add")
 	public String add() {
@@ -147,7 +138,7 @@ public class BoardController {
 				if(result) {
 					return "redirect:/board/detail?id=" + data.getId();
 				} else {
-					return modify(model, empDto,boardVo.getId());
+					return modify(model, empDto, boardVo.getId());
 				}
 			} else {
 				model.addAttribute("error", "해당 작업을 수행할 권한이 없습니다.");
@@ -158,13 +149,13 @@ public class BoardController {
 			return "error/noExists";
 		}
 	}
-	@PostMapping(value = "/delete",produces = "application/json; charset=utf-8")
-	@ResponseBody //ajax 작업 시 추가로 필요 : jsp경로 파일명이 아닌 본문에 추가할 데이터를 반환
-	public String delete(@RequestParam int id
-			,@SessionAttribute("loginData") EmpDTO empDto) {
-		
+	
+	@PostMapping(value="/delete", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public String delete(@SessionAttribute("loginData") EmpDTO empDto
+			, @RequestParam int id) {
 		logger.info("delete(empDto={}, id={})", empDto, id);
-
+		
 		BoardDTO data = service.getData(id);
 		
 		JSONObject json = new JSONObject();
@@ -173,48 +164,47 @@ public class BoardController {
 			// 삭제할 데이터 없음
 			json.put("code", "notExists");
 			json.put("message", "이미 삭제 된 데이터 입니다.");
-		}else {
+		} else {
 			if(data.getEmpId() == empDto.getEmpId()) {
-				//작성자, 수정자 동일
+				// 작성자, 수정자 동일인
 				boolean result = service.remove(data);
 				if(result) {
 					json.put("code", "success");
 					json.put("message", "삭제가 완료되었습니다.");
-				}else {
-					//삭제 실패
+				} else {
+					// 삭제 실패
 					json.put("code", "fail");
 					json.put("message", "삭제 작업 중 문제가 발생하였습니다.");
 				}
-			}else {
-				//작성자, 수정자 동일인 아니다 -> 권한 없음
+			} else {
+				// 작성자, 수정자 동일인 아님 - 권한 없음
 				json.put("code", "permissionError");
-				json.put("message", "삭제할 권한이 없습니다.");
+				json.put("message", "삭제 할 권한이 없습니다.");
 			}
 		}
 		
 		return json.toJSONString();
 	}
 	
-	@PostMapping(value = "/like",produces = "application/json; charset=utf-8")
+	@PostMapping(value="/like", produces="application/json; charset=utf-8")
 	@ResponseBody
-	public String like(@RequestParam int id
-			,@SessionAttribute("loginData") EmpDTO empDto
-			,HttpSession session) {
-		logger.info("like(empDto={}, id={}, session={})", empDto, id,session);
+	public String like(HttpSession session
+			, @RequestParam int id) {
+		logger.info("like(id={})", id);
 		
 		BoardDTO data = service.getData(id);
-		
 		JSONObject json = new JSONObject();
 		
-		if(data != null) {
+		if(data == null) {
+			// 존재하지 않음.
+			json.put("code", "noData");
+			json.put("message", "해당 데이터가 존재하지 않습니다.");
+		} else {
 			service.incLike(session, data);
 			json.put("code", "success");
 			json.put("like", data.getLike());
-		}else {
-			json.put("code", "noData");
-			json.put("message", "해당 데이터가 존재하지 않습니다.");
 		}
-		
 		return json.toJSONString();
 	}
+	
 }
